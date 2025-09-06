@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Enhanced nebula-like gradient background overlay */
+.nebula-background {
+  position: relative;
+}
+
+.nebula-background::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  
+  /* Light mode nebula */
+  background: 
+    radial-gradient(ellipse 800px 600px at top left, rgba(59, 130, 246, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse 600px 800px at top right, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse 700px 500px at center right, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 500px 700px at center left, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 600px 400px at bottom left, rgba(34, 197, 94, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 800px 600px at bottom right, rgba(99, 102, 241, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse 400px 600px at 25% 75%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 500px 400px at 75% 25%, rgba(34, 197, 94, 0.07) 0%, transparent 50%),
+    linear-gradient(135deg, 
+      rgba(59, 130, 246, 0.03) 0%, 
+      rgba(34, 197, 94, 0.04) 25%, 
+      rgba(16, 185, 129, 0.03) 50%, 
+      rgba(99, 102, 241, 0.04) 75%, 
+      rgba(59, 130, 246, 0.03) 100%
+    );
+}
+
+/* Dark mode nebula */
+.dark .nebula-background::before {
+  background: 
+    radial-gradient(ellipse 800px 600px at top left, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse 600px 800px at top right, rgba(34, 197, 94, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse 700px 500px at center right, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse 500px 700px at center left, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse 600px 400px at bottom left, rgba(34, 197, 94, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 800px 600px at bottom right, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse 400px 600px at 25% 75%, rgba(16, 185, 129, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 500px 400px at 75% 25%, rgba(34, 197, 94, 0.09) 0%, transparent 50%),
+    linear-gradient(135deg, 
+      rgba(59, 130, 246, 0.05) 0%, 
+      rgba(34, 197, 94, 0.06) 25%, 
+      rgba(16, 185, 129, 0.05) 50%, 
+      rgba(99, 102, 241, 0.06) 75%, 
+      rgba(59, 130, 246, 0.05) 100%
+    );
+}
+
+/* Enhanced animated floating particles for nebula effect */
+.floating-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-particles::before,
+.floating-particles::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  animation: float 25s infinite linear;
+}
+
+.floating-particles::before {
+  width: 3px;
+  height: 3px;
+  background: rgba(59, 130, 246, 0.4);
+  top: 10%;
+  left: 15%;
+  animation-delay: 0s;
+  box-shadow: 0 0 6px rgba(59, 130, 246, 0.3);
+}
+
+.floating-particles::after {
+  width: 4px;
+  height: 4px;
+  background: rgba(34, 197, 94, 0.4);
+  top: 70%;
+  right: 20%;
+  animation-delay: 12s;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.3);
+}
+
+/* Additional floating particles */
+.floating-particles {
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, rgba(16, 185, 129, 0.3), transparent),
+    radial-gradient(2px 2px at 40% 70%, rgba(99, 102, 241, 0.3), transparent),
+    radial-gradient(1px 1px at 90% 40%, rgba(59, 130, 246, 0.4), transparent),
+    radial-gradient(1px 1px at 60% 10%, rgba(34, 197, 94, 0.3), transparent);
+  background-repeat: no-repeat;
+  background-size: 300px 300px, 400px 400px, 200px 200px, 350px 350px;
+  animation: sparkle 20s ease-in-out infinite alternate;
+}
+
+/* Dark mode floating particles - enhanced for dark background */
+.dark .floating-particles::before {
+  background: rgba(59, 130, 246, 0.6);
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+}
+
+.dark .floating-particles::after {
+  background: rgba(34, 197, 94, 0.6);
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);
+}
+
+.dark .floating-particles {
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, rgba(16, 185, 129, 0.5), transparent),
+    radial-gradient(2px 2px at 40% 70%, rgba(99, 102, 241, 0.5), transparent),
+    radial-gradient(1px 1px at 90% 40%, rgba(59, 130, 246, 0.6), transparent),
+    radial-gradient(1px 1px at 60% 10%, rgba(34, 197, 94, 0.5), transparent);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) translateX(0px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) translateX(100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Enhanced glow effect for cards */
+.glow-on-hover {
+  transition: all 0.3s ease-in-out;
+}
+
+.glow-on-hover:hover {
+  box-shadow: 
+    0 10px 25px rgba(59, 130, 246, 0.1),
+    0 0 20px rgba(59, 130, 246, 0.05);
+  transform: translateY(-2px);
+}
+
+.dark .glow-on-hover:hover {
+  box-shadow: 
+    0 10px 25px rgba(59, 130, 246, 0.2),
+    0 0 20px rgba(59, 130, 246, 0.1);
+}
+
+/* Enhanced card backgrounds for better contrast */
+.enhanced-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .enhanced-card {
+  background: rgba(17, 24, 39, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+/* Subtle texture overlay for more visual interest */
+.texture-overlay {
+  position: relative;
+}
+
+.texture-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.dark .texture-overlay::before {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.01) 0%, transparent 50%);
+}
