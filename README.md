@@ -1,6 +1,6 @@
 # Data Science Portfolio
 
-A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. Features individual project pages with Jupyter notebook embedding capabilities.
+A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS.
 
 ## Features
 
@@ -86,14 +86,6 @@ export const projects: ProjectType[] = [
   }
 ];
 ```
-
-### Embedding Jupyter Notebooks
-
-To embed Jupyter notebooks:
-
-1. Upload your notebook to GitHub
-2. Get the nbviewer URL: `https://nbviewer.org/github/username/repo/blob/main/notebook.ipynb`
-3. Add the URL to your project's `notebookUrl` field
 
 ### Updating Personal Information
 
