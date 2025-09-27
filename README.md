@@ -2,16 +2,6 @@
 
 A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS.
 
-## Features
-
-- 🎨 Modern, responsive design
-- 📱 Mobile-first approach
-- 🚀 Fast loading with Vite
-- 📊 Project showcase with detailed pages
-- 📓 Jupyter notebook embedding
-- 🎭 Smooth animations with Framer Motion
-- 🔍 SEO optimized
-
 ## Getting Started
 
 ### Prerequisites
