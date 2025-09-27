@@ -44,6 +44,10 @@ export const projects: ProjectType[] = [
       "align": "center"
     },
     {
+      "type": "text",
+      "content": "## Data Preparation\n\nData preparation involved translating Japanese characters with Google Translate to create lookup tables. SAS Data Studio was used for visual data transformations, and custom SAS code handled more complex steps. This ensured the dataset was suitable for visualization and modeling."
+    },
+    {
       "type": "image",
       "src": "/portfolio/images/proj1_sas/SAS Project Data Ext2.png",
       "caption": "Further data preparation using SAS Data Studio.",
@@ -51,17 +55,13 @@ export const projects: ProjectType[] = [
     },
     {
       "type": "text",
-      "content": "## Data Preparation\n\nData preparation involved translating Japanese characters with Google Translate to create lookup tables. SAS Data Studio was used for visual data transformations, and custom SAS code handled more complex steps. This ensured the dataset was suitable for visualization and modeling."
+      "content": "## Data Visualization\n\nThe visualization reveals several key insights about user behavior. Most users are based in Tokyo, highlighting the city as the platform’s primary market. Users aged 36–50 stand out as the most active buyers, purchasing more coupons compared to other age groups. On average, female users also purchased more coupons than male users, indicating a stronger engagement among women. In contrast, very few users fall into the 15–21 age group, making up only 0.3% of the user base, which points to limited adoption among younger individuals."
     },
     {
       "type": "image",
       "src": "/portfolio/images/proj1_sas/SAS Project Data Exp.png",
       "caption": "Exploratory data visualization showing key insights about user demographics.",
       "align": "center"
-    },
-    {
-      "type": "text",
-      "content": "## Data Visualization\n\nKey insights from the visualization include:\n- Most users are from Tokyo.\n- Users aged 36-50 purchased more coupons.\n- Female users purchased more coupons than male users on average.\n- Users with longer tenure are more active.\n- Very few users aged 15-21 use the site (0.3% of user base)."
     },
     {
       "type": "image",
@@ -85,7 +85,7 @@ export const projects: ProjectType[] = [
     },
     {
       "type": "text",
-      "content": "## Modeling\n\nA binary classification model predicted whether a customer is likely to purchase a coupon. Gradient boosting was chosen as the champion model due to higher accuracy and precision. Important features included viewing order, discount, genre, discount start month, and validity period."
+      "content": "## Modeling\n\nA binary classification model was developed using SAS Model Studio to predict whether a customer is likely to purchase a coupon. Gradient Boosting was selected as the champion model, as it demonstrated higher accuracy and precision compared to other candidates. The most influential features identified by the model included viewing order, discount, genre, discount start month, and validity period."
     },
     {
       "type": "image",
@@ -148,7 +148,7 @@ export const projects: ProjectType[] = [
   "photo_credit": "Photo by Photo By: Kaboompics.com from Pexels: https://www.pexels.com/photo/american-and-chinese-flags-and-usa-dollars-4386371/", 
   "tags": ["Data Visualization", "R", "ggplot2", "Survey Analysis", "Demographics"],
   "externalLinks": [
-    { "url": "https://github.com/yourusername/pew-survey-analysis", "label": "View Python Code", "description": "Source code used for data preparation and visualization." }
+    { "url": "https://github.com/yourusername/pew-survey-analysis", "label": "View R Code", "description": "Source code used for data preparation and visualization." }
   ],
   "technologies": ["R", "ggplot2", "dplyr", "tidyr", "foreign"],
   "date": "2023-08-31",

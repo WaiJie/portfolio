@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
 import { ThemeToggle } from './theme-toggle';
 
-// Define a consistent scroll offset for fixed header
-const SCROLL_OFFSET = 90; // This value accounts for the header's height when scrolled + desired padding
+const SCROLL_OFFSET = 90;
 
 const routes = [
   { name: 'Home', path: '/', section: null },
@@ -14,173 +13,147 @@ const routes = [
   { name: 'Contact', path: '/#contact', section: 'contact' },
 ];
 
+const useScrollOnRouteChange = () => {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (!hash) return;
+    window.history.replaceState({}, '', pathname);
+    window.history.pushState({}, '', hash);
+    const id = hash.replace('#', '');
+    const el = document.getElementById(id);
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  }, [pathname, hash]);
+};
+
+const useActiveSection = () => {
+  const [active, setActive] = useState<string | null>(null);
+  useEffect(() => {
+    const onScroll = () => {
+      const sections = routes.map(r => r.section).filter(Boolean) as string[];
+      let found: string | null = null;
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= SCROLL_OFFSET + 10) found = id;
+      }
+      if (found !== active) {
+        setActive(found);
+        window.history.replaceState({}, '', found ? `#${found}` : '/');
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [active]);
+  return active;
+};
+
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  useScrollOnRouteChange();
+  const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const headerRef = useRef<HTMLElement>(null); // Ref to get header height
+  const activeSection = useActiveSection();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
+  useEffect(() => setMobileOpen(false), [location.pathname, location.hash]);
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location.pathname, location.hash]); // Close mobile menu on path or hash change
-
-  // Custom scroll function to account for fixed header
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-      const offsetPosition = elementPosition - SCROLL_OFFSET;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    } else if (element) {
-      // Fallback if element is found but for some reason SCROLL_OFFSET logic fails
-      element.scrollIntoView({ behavior: 'smooth' });
+    const el = document.getElementById(sectionId);
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
+      window.scrollTo({ top, behavior: 'smooth' });
     }
   };
 
-  // Handle hash navigation on page load or hash change
-  useEffect(() => {
-    if (location.hash && location.pathname === '/') {
-      const sectionId = location.hash.substring(1);
-      // Use a timeout to ensure the DOM is ready and the element exists
-      setTimeout(() => {
-        scrollToSection(sectionId);
-      }, 100);
-    } else if (location.pathname === '/' && !location.hash) {
-      // If on home page with no hash, scroll to top
+  const handleNavClick = (route: typeof routes[0]) => {
+    if (route.section) {
+      if (location.pathname !== '/') navigate(`/#${route.section}`);
+      else {
+        window.history.replaceState({}, '', `/#${route.section}`);
+        scrollToSection(route.section);
+      }
+    } else {
+      navigate('/');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  }, [location.pathname, location.hash]);
-
-  const handleNavClick = (e: React.MouseEvent, route: typeof routes[0]) => {
-    e.preventDefault(); // Prevent default link behavior
-    setIsOpen(false); // Close mobile menu
-
-    if (route.section) {
-      // For Projects, About, Contact: navigate to home with the specific hash
-      navigate(`/#${route.section}`);
-      // The useEffect above will handle the actual scrolling
-    } else {
-      // For Home button or "Data Analytics Portfolio" title: navigate to home without a hash
-      navigate('/');
-      window.scrollTo({ top: 0, behavior: 'smooth' }); // Ensure scroll to top for home
-    }
+    setMobileOpen(false);
   };
 
-  const headerClass = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
-    isScrolled 
-      ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm py-3' 
-      : 'bg-transparent py-6'
-  }`;
+  const headerClasses =
+    'fixed top-0 left-0 right-0 z-50 bg-[var(--bg)] dark:bg-[var(--bg-soft)] shadow-sm py-4';
 
-  return (
-    <header ref={headerRef} className={headerClass}>
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between">
-          {/* Make name clickable to go to homepage */}
-          <Link 
-            to="/" 
-            className="flex items-center gap-2"
-            onClick={(e) => handleNavClick(e, routes[0])} // Use Home route logic
+  const DesktopNav = () => (
+    <div className="hidden md:flex items-center space-x-6">
+      {routes.map(route => {
+        const isActive =
+          location.pathname === '/' &&
+          (route.section ? activeSection === route.section : !activeSection);
+        return (
+          <span
+            key={route.name}
+            onClick={() => handleNavClick(route)}
+            className={`nav-item cursor-pointer px-2 py-1 text-sm font-medium transition-colors ${
+              isActive ? 'active' : ''
+            }`}
           >
-            <span className="font-bold text-xl text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Data Analytics Portfolio</span>
-          </Link>
+            {route.name}
+          </span>
+        );
+      })}
+      <ThemeToggle className="theme-toggle-outline" />
+    </div>
+  );
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            {routes.map((route) => {
-              let isActive = false;
-              if (location.pathname === '/') {
-                if (route.section) {
-                  isActive = location.hash === `#${route.section}`;
-                } else {
-                  isActive = !location.hash; // Home is active if no hash
-                }
-              }
-              // If not on home page, isActive remains false, which is correct.
+  const MobileNav = () => (
+    <div className="flex md:hidden items-center gap-2">
+      <ThemeToggle className="theme-toggle-outline" />
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={() => setMobileOpen(!mobileOpen)}
+        aria-label="Toggle Menu"
+      >
+        {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+      </Button>
 
-              return (
-                <button
-                  key={route.path}
-                  onClick={(e) => handleNavClick(e, route)}
-                  className={`px-4 py-2 text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400 rounded-lg ${
-                    isActive 
-                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20' 
-                      : 'text-gray-700 dark:text-gray-300'
-                  }`}
-                >
-                  {route.name}
-                </button>
-              );
-            })}
-            <ThemeToggle />
-          </div>
-
-          {/* Mobile Navigation */}
-          <div className="flex md:hidden items-center gap-2">
-            <ThemeToggle />
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle Menu"
-            >
-              {isOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden fixed inset-0 top-[72px] z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm">
-          <nav className="container mx-auto px-4 py-8 flex flex-col gap-6">
-            {routes.map((route) => {
-              let isActive = false;
-              if (location.pathname === '/') {
-                if (route.section) {
-                  isActive = location.hash === `#${route.section}`;
-                } else {
-                  isActive = !location.hash;
-                }
-              }
-
-              return (
-                <button
-                  key={route.path}
-                  onClick={(e) => handleNavClick(e, route)}
-                  className={`text-xl font-medium py-2 border-b border-gray-200 dark:border-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-left rounded-lg px-4 ${
-                    isActive 
-                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20' 
-                      : 'text-gray-700 dark:text-gray-300'
-                  }`}
-                >
-                  {route.name}
-                </button>
-              );
-            })}
-          </nav>
+      {mobileOpen && (
+        <div className="fixed inset-0 z-[60] bg-[var(--bg)] dark:bg-[var(--bg-soft)] overflow-auto p-8 flex flex-col gap-4">
+          {routes.map(route => {
+            const isActive =
+              location.pathname === '/' &&
+              (route.section ? activeSection === route.section : !activeSection);
+            return (
+              <span
+                key={route.name}
+                onClick={() => handleNavClick(route)}
+                className={`nav-item text-xl cursor-pointer ${isActive ? 'active' : ''}`}
+              >
+                {route.name}
+              </span>
+            );
+          })}
         </div>
       )}
+    </div>
+  );
+
+  return (
+    <header className={headerClasses}>
+      <div className="container mx-auto px-4 flex items-center justify-between">
+        <Link
+          to="/"
+          onClick={() => handleNavClick(routes[0])}
+          className="flex items-center gap-2"
+        >
+          <span className="font-bold text-xl text-[var(--text)] hover:text-[var(--accent)] transition-colors underline-offset-4">
+            Data Analytics Portfolio
+          </span>
+        </Link>
+        <DesktopNav />
+        <MobileNav />
+      </div>
     </header>
   );
 }

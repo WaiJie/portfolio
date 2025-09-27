@@ -1,117 +1,127 @@
 # Data Science Portfolio
 
-A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. Features individual project pages with Jupyter notebook embedding capabilities.
+A responsive portfolio site built with **React**, **TypeScript**, and **Tailwind CSS**, designed to showcase data science projects with support for embedding **Jupyter Notebooks**.
 
-## Features
+---
 
-- 🎨 Modern, responsive design
-- 📱 Mobile-first approach
-- 🚀 Fast loading with Vite
-- 📊 Project showcase with detailed pages
-- 📓 Jupyter notebook embedding
-- 🎭 Smooth animations with Framer Motion
-- 🔍 SEO optimized
+## 🚀 Features
 
-## Getting Started
+- Responsive, mobile-first design  
+- Fast loading with Vite  
+- Project pages with notebook embedding  
+- Smooth animations via Framer Motion  
+- SEO optimized  
+
+---
+
+## 🛠 Getting Started
 
 ### Prerequisites
 
-- Node.js (v16 or higher)
+- Node.js v16+
 - npm or yarn
 
-### Installation
+### Setup
 
-1. Clone the repository:
 ```bash
 git clone https://github.com/yourusername/portfolio.git
 cd portfolio
-```
-
-2. Install dependencies:
-```bash
 npm install
-```
-
-3. Start the development server:
-```bash
 npm run dev
 ```
 
-4. Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
+Visit: [http://localhost:5173](http://localhost:5173)
 
-## Deployment to GitHub Pages
+---
 
-1. Update the `homepage` field in `package.json` with your GitHub Pages URL:
+## 📦 Deployment (GitHub Pages)
+
+1. Set `homepage` in `package.json`:
+
 ```json
 "homepage": "https://yourusername.github.io/portfolio"
 ```
 
-2. Update the `base` field in `vite.config.ts`:
-```typescript
+2. Set `base` in `vite.config.ts`:
+
+```ts
 base: '/portfolio/'
 ```
 
-3. Update the `basename` in `src/App.tsx`:
-```typescript
+3. Set `basename` in `src/App.tsx`:
+
+```tsx
 <Router basename="/portfolio">
 ```
 
-4. Build and deploy:
+4. Deploy:
+
 ```bash
 npm run deploy
 ```
 
-## Customization
+---
 
-### Adding Projects
+## ⚙️ Customization
 
-Edit `src/lib/data.ts` to add your projects:
+### Add Projects
 
-```typescript
-export const projects: ProjectType[] = [
+Edit `src/lib/data.ts`:
+
+```ts
+export const projects = [
   {
-    id: "unique-id",
-    title: "Your Project Title",
-    slug: "your-project-slug",
-    shortDescription: "Brief description",
-    fullDescription: "Detailed description",
-    image: "https://your-image-url.com/image.jpg",
+    id: "project-id",
+    title: "Project Title",
+    slug: "project-slug",
+    shortDescription: "Brief summary",
+    fullDescription: "Detailed write-up",
+    image: "https://link-to-image.com",
     tags: ["Tag1", "Tag2"],
-    githubUrl: "https://github.com/yourusername/project",
-    liveUrl: "https://your-live-demo.com",
-    notebookUrl: "https://nbviewer.org/github/yourusername/project/blob/main/notebook.ipynb",
+    githubUrl: "...",
+    liveUrl: "...",
+    notebookUrl: "...",
     technologies: ["Python", "Pandas"],
-    challenges: ["Challenge 1", "Challenge 2"],
-    outcomes: ["Outcome 1", "Outcome 2"]
+    challenges: ["Challenge 1"],
+    outcomes: ["Outcome 1"]
   }
 ];
 ```
 
-### Embedding Jupyter Notebooks
+### Embed Notebooks
 
-To embed Jupyter notebooks:
+1. Upload notebook to GitHub
+2. Use nbviewer URL:
+   `https://nbviewer.org/github/username/repo/blob/main/notebook.ipynb`
+3. Add the link to `notebookUrl`
 
-1. Upload your notebook to GitHub
-2. Get the nbviewer URL: `https://nbviewer.org/github/username/repo/blob/main/notebook.ipynb`
-3. Add the URL to your project's `notebookUrl` field
+### Update Personal Info
 
-### Updating Personal Information
+* `src/sections/hero-section.tsx` – basic info and links
+* `src/sections/about-me-comprehensive-section.tsx` – bio and education
+* `src/lib/data.ts` – skills and experience
 
-Update the following files:
-- `src/sections/hero-section.tsx` - Personal info, links, interests
-- `src/sections/about-me-comprehensive-section.tsx` - About section, education
-- `src/lib/data.ts` - Skills, work experience
+---
 
-## Technologies Used
+## 🧱 Tech Stack
 
-- React 18
-- TypeScript
-- Tailwind CSS
-- Framer Motion
-- React Router
-- Vite
-- Lucide React (icons)
+* React 18
+* TypeScript
+* Tailwind CSS
+* Vite
+* Framer Motion
+* React Router
+* Lucide React (icons)
 
-## License
+---
 
-MIT License - feel free to use this template for your own portfolio!
+## 📄 License
+
+MIT License
+
+---
+
+## ⚠️ Disclaimer
+
+This portfolio was built with the assistance of AI tools, including code generation and documentation support.
+
