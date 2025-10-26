@@ -2,11 +2,7 @@
 
 This site serves as a dynamic portfolio, showcasing various data science projects.
 
----
-
 ## 🧱 Tech Stack
-
----
 
 - React 18
 - TypeScript
@@ -16,11 +12,7 @@ This site serves as a dynamic portfolio, showcasing various data science project
 - React Router
 - Lucide React (icons)
 
----
-
 ## 📂 Portfolio Content Structure
-
----
 
 This site is organized to clearly present data science projects and related documentation.
 
@@ -30,4 +22,3 @@ This site is organized to clearly present data science projects and related docu
 -   **`src`**: The overall application's source code resides within this directory, encompassing all components, contexts, and utility functions.
 -   **`portfolio`**: As indicated by the `basename` in `App.tsx` and deployment settings, this serves as the base path for the deployed application, ensuring all assets and routes are correctly resolved.
 
----
