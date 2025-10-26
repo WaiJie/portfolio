@@ -9,26 +9,26 @@
 
 /* ---------- LIGHT – e-book paper beige ---------- */
 :root {
-  --bg: #f9f5e9;
+  --bg: #ffffff;
   --bg-soft: #f5f2e8;
 
   --text: #3a2b18;
   --text-muted: #7a6b58;
 
-  --accent: #d4a017;
-  --accent-soft: #e6c158;
-  --glow: rgba(212, 160, 23, 0.28);
+  --accent: #b5841f; /* New highlight color (rich brown/gold) */
+  --accent-soft: #d4a017;
+  --glow: rgba(181, 132, 31, 0.28);
 
-  --card-bg: rgba(252, 250, 244, 0.82);
-  --card-border: rgba(252, 250, 244, 0.9);
+  --card-bg: #f9f5e9; /* Beige card background */
+  --card-border: rgba(249, 245, 233, 0.9);
 
-  --tag-bg: #fcfaf4; /* Lighter beige for cards */
-  --tag-text: #6b5525;
+  --tag-bg: #f9f5e9;
+  --tag-text: #3a2b18;
 
   --link: #b5841f;
 
-  --about-pill-bg: #fcfaf4;
-  --about-pill-text: #6b5525;
+  --about-pill-bg: #eae3d3; /* Darker beige for contrast on cards */
+  --about-pill-text: #3a2b18;
 }
 
 /* ---------- DARK – cyan nebula ---------- */
@@ -47,11 +47,11 @@
   --card-border: rgba(255, 255, 255, 0.25);
 
   --tag-bg: rgba(34, 211, 238, 0.12);
-  --tag-text: #a7f3d0;
+  --tag-text: #e5e7eb;
 
   --link: #22d3ee;
 
-  --about-pill-bg: #374151;
+  --about-pill-bg: #111827; /* Near-black for contrast on cards */
   --about-pill-text: #22d3ee;
 }
 
@@ -118,7 +118,7 @@ body {
   border: 1px solid var(--card-border);
 }
 .about-card {
-  background: var(--tag-bg);
+  background: var(--card-bg);
   border: none;
   box-shadow: none;
 }
@@ -140,6 +140,7 @@ body {
 .dark .header-background {
   /* In dark mode, use the glassy card background */
   background: var(--card-bg);
+  backdrop-filter: none;
 }
 
 .project-card:hover {
@@ -166,11 +167,18 @@ body {
   color: var(--text);
 }
 
-/* Pills inside about cards */
-.about-card .tag {
+/* Custom Pill Style */
+.pill {
   background-color: var(--about-pill-bg);
   color: var(--about-pill-text);
 }
+
+/* Hero Pill Style */
+.hero-pill {
+  background-color: var(--tag-bg);
+  color: var(--tag-text);
+}
+
 
 /* =========================================================
    EXTERNAL LINK BUTTON
@@ -201,7 +209,7 @@ body {
 header .nav-item {
   cursor: pointer;
   padding: 0.5rem 0.75rem;
-  color: var(--text-muted);
+  color: var(--text);
   font-weight: 500;
   transition: color 0.2s ease-in-out;
 }

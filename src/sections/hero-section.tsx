@@ -41,12 +41,12 @@ export default function HeroSection() {
           {/* Left Column */}
           <div className="text-center lg:text-left space-y-6">
             <h1 className="text-4xl sm:text-5xl font-bold text-[var(--text)]">{name}</h1>
-            <p className="text-lg font-medium text-[var(--accent)]">{jobTitle}</p>
+            <p className="text-lg font-medium" style={{ color: 'var(--accent)' }}>{jobTitle}</p>
             <div className="flex items-center justify-center lg:justify-start text-[var(--text-muted)]">
               <MapPin className="h-5 w-5 mr-2" />
               <span>{location}</span>
             </div>
-            <p className="leading-relaxed text-[var(--text-muted)]">{shortDescription}</p>
+            <p className="leading-relaxed" style={{ color: 'var(--text-muted)' }}>{shortDescription}</p>
 
             <div className="flex justify-center lg:justify-start space-x-4">
               <a
@@ -72,7 +72,7 @@ export default function HeroSection() {
                 {fieldsOfInterest.map((spec, idx) => (
                   <div
                     key={idx}
-                    className="group flex items-center px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium shadow-md transition-all duration-300 ease-in-out bg-[var(--tag-bg)] text-[var(--tag-text)] hover:scale-105 hover:shadow-lg cursor-default"
+                    className="group hero-pill flex items-center px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg cursor-default"
                   >
                     <span className="mr-1.5">{spec.emoji}</span>
                     <span>{spec.title}</span>
@@ -95,7 +95,7 @@ export default function HeroSection() {
                 animate="visible"
                 variants={fadeUp}
                 transition={{ duration: 0.5 }}
-                className="w-[90%] md:w-[80%] bg-[var(--tag-bg)] rounded-2xl overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300"
+                className="w-[90%] md:w-[80%] project-card texture-overlay rounded-2xl overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300"
                 onClick={scrollToProjects}
               >
                 {/* Project Image */}
@@ -109,8 +109,8 @@ export default function HeroSection() {
 
                 {/* Title & Description */}
                 <div className="p-4 flex flex-col items-start">
-                  <h3 className="text-lg font-semibold text-[var(--text)]">{currentProject.title}</h3>
-                  <p className="text-sm text-[var(--text-muted)] line-clamp-3 mt-1">
+                  <h3 className="text-lg font-semibold" style={{ color: 'var(--text)' }}>{currentProject.title}</h3>
+                  <p className="text-sm line-clamp-3 mt-1" style={{ color: 'var(--text-muted)' }}>
                     {currentProject.shortDescription}
                   </p>
                 </div>
@@ -119,7 +119,7 @@ export default function HeroSection() {
 
             {/* Scroll Down */}
             <div className="flex flex-col items-center mt-6">
-              <p className="text-sm font-medium text-[var(--text-muted)]">Explore My Work</p>
+              <p className="text-sm font-medium text-[var(--text-muted)]">Explore My Work below!</p>
               <motion.div
                 animate={{ y: [0, 8, 0] }}
                 transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}

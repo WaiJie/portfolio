@@ -68,11 +68,7 @@ export default function AboutMeComprehensiveSection() {
                   {list.map((skill) => (
                     <span
                       key={skill}
-                      className="px-2 py-1 text-[0.9rem] font-medium rounded-full cursor-default"
-                      style={{
-                        backgroundColor: 'var(--about-pill-bg)', // white / grey
-                        color: 'var(--about-pill-text)',       // brown / cyan
-                      }}
+                      className="pill px-2 py-1 text-[0.9rem] font-medium rounded-full cursor-default"
                     >
                       {skill}
                     </span>

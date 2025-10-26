@@ -857,7 +857,19 @@ export const projects: ProjectType[] = [
     },
     {
       "type": "text",
-      "content": "## Data Preprocessing and Visualization\n- Data Loading: Dataset loaded into Python using Pandas.\n- Data Cleaning: Missing values imputed; inconsistent data in Marital_Status corrected.\n- Feature Engineering: New features like Age and Tenure created; redundant columns removed.\n- Outlier Detection: Outliers identified and removed using the IQR method.\n\nVisualization: Histograms, scatter plots, and line plots used to explore variable distributions and relationships."
+      "content": "## Data Preprocessing\n The dataset, containing 2240 customer records, was loaded using Pandas. Missing income values were imputed with the mean, as the income distribution was mostly normal. Anomalous entries in `Marital_Status` (e.g., 'Absurd', 'YOLO') were re-categorised as 'Single' to ensure data consistency."
+    },
+    {
+      "type": "text",
+      "content": "## Feature Engineering\n New features `Age` and `Tenure` were created from birth year and customer start date, respectively, to make them more interpretable for clustering. Redundant columns like `ID`, `Year_Birth`, and others with no variance were dropped."
+    },
+    {
+      "type": "text",
+      "content": "## Outlier Removal & Transformation\n Outliers in key variables such as `Age` and `Income` were identified using the IQR method and removed to prevent skewed results. Categorical variables like `Education` and `Marital_Status` were dummy-encoded, and all variables were standardised using `StandardScaler` to ensure that no single feature dominated the clustering algorithm due to its scale."
+    },
+    {
+      "type": "text",
+      "content": "## Data Visualisation\n Histograms confirmed that `Income` and `Age` were approximately normally distributed, while scatter plots revealed a strong positive correlation between income and spending on wine and meat. It was also found that higher-income customers tended to have fewer children at home and that frequent website visitors spent less on average across product categories, suggesting they were likely deal-seekers."
     },
     {
       "type": "image",
@@ -879,7 +891,7 @@ export const projects: ProjectType[] = [
     },
     {
       "type": "text",
-      "content": "## Principal Component Analysis (PCA)\n- Dimensionality Reduction: PCA reduced the dataset to 3 principal components.\n- Optimal Number of Clusters: Elbow method indicated 4 clusters."
+      "content": "## Principal Component Analysis (PCA)\nTo simplify the 32-column dataset for visualization, Principal Component Analysis (PCA) was used to reduce its dimensionality to three principal components. This transformation was performed using Scikit-learn's PCA module, which helps in capturing the most significant variance in the data within a smaller set of features."
     },
     {
       "type": "image",
@@ -889,7 +901,7 @@ export const projects: ProjectType[] = [
     },
     {
       "type": "text",
-      "content": "## K-Means Clustering\n- Clustering: K-Means applied on PCA-transformed data to identify 4 customer segments.\n- Cluster Interpretation: Analyzed mean values of each cluster to understand characteristics."
+      "content": "## K-Means Clustering\nTo determine the optimal number of clusters, the K-Means algorithm was run iteratively with an increasing number of clusters, and the inertia was plotted against the cluster count. The resulting elbow plot clearly showed an elbow point at four clusters, indicating that this was the optimal `k` value. The K-Means algorithm was then implemented with `n_clusters = 4`, yielding a silhouette score of 0.411, which suggests that the clusters are moderately well-separated. Finally, the cluster labels were merged with the original, unscaled dataset to interpret the segments based on their original values."
     },
     {
       "type": "image",
@@ -899,7 +911,23 @@ export const projects: ProjectType[] = [
     },
     {
       "type": "text",
-      "content": "### Customer Segments and Marketing Implications\n- Segment 1 (Cluster 0): Budget-Conscious Young Families — value-driven deals, engaging online content.\n- Segment 2 (Cluster 1): Affluent Lifestyle Seekers — exclusive offers, VIP loyalty programs.\n- Segment 3 (Cluster 2): Middle-Income Mature Families — family-oriented bundles and deals.\n- Segment 4 (Cluster 3): Practical Affluent Consumers — high-quality products, targeted campaigns."
+      "content": "## Customer Segments and Marketing Implications"
+    },
+    {
+      "type": "text",
+      "content": "Segment 1: Budget-Conscious Young Families\nThis low-income group (average 33K) consists of middle-aged adults with children. They are the most price-sensitive, have the lowest spending, but are highly active online, frequently visiting the website and using deals. Marketing should focus on value-driven online promotions."
+    },
+    {
+      "type": "text",
+      "content": "Segment 2: Affluent Lifestyle Seekers\nEarning over 80K on average, these well-educated customers have few children and exhibit the highest spending across all product categories, particularly on luxury items like wine. They respond well to campaigns and prefer in-store and catalogue shopping. A VIP loyalty program would be effective for this segment."
+    },
+    {
+      "type": "text",
+      "content": "Segment 3: Middle-Income Matured Families\nWith an average income between the other segments, these customers have teenage children and are savvy deal-seekers. Their spending is moderate, and they respond best to bundle deals that cater to the entire family, advertised through both online and in-store channels."
+    },
+    {
+      "type": "text",
+      "content": "Segment 4: Practical Affluent Consumers\nSimilar to Segment 2 in income (over 70K) and education, this group prefers spending on food and gold products rather than wine. Despite their high income, they have a low campaign acceptance rate, suggesting that marketing should focus on high-quality food products and cross-category bundles."
     },
     {
       "type": "image",
@@ -927,46 +955,125 @@ export const projects: ProjectType[] = [
   "tags": ["Fraud Detection", "Machine Learning", "Random Forest"],
   "technologies": ["Python", "Scikit-learn", "Pandas", "Matplotlib"],
   "date": "2025-04-06",
+  "externalLinks": [
+      {
+        "label": "View Full report",
+        "url": "/portfolio/images/proj10_credit_card_fraud/Detecting Credit Card Fraud in Transactional Data.pdf",
+        "description": "PDF document containing the full report submitted for the Final Project."
+      }
+    ],
   "blocks": [
     {
       "type": "text",
-      "content": "## Project Overview\nThis project detects fraudulent credit card transactions using two distinct datasets—offline (in-store) and online (e-commerce)—and ultimately deploys two champion models, both Random Forest classifiers, tailored to each dataset. The goal was to balance precision and recall for high-stakes decisions, exceed an F1-score target of 0.80, and quantify business impact in avoided fraud losses."
+      "content": "## Project Overview\nThis project applied machine learning to detect credit card fraud patterns using a large Kaggle transaction dataset, which was separated into offline and online transactions for distinct analysis. The primary objectives were to develop models that could effectively balance precision and recall, surpass a minimum F1-score of 0.80, and deliver a quantifiable business impact by minimizing fraud-related financial losses. The initiative culminated in two champion Random Forest classifiers, each optimized for its specific transactional context."
     },
     {
       "type": "text",
-      "content": "## Data Preparation\nData was sourced from a Kaggle collection combining transaction logs, user demographics, merchant category codes, and fraud labels. After focusing on 2015–2019 to capture recent patterns (~6.7M transactions), we standardized geographies (aggregating US states under USA), filtered to top-transacting countries (USA, Mexico, Italy, Canada, United Kingdom) while retaining online records, merged fraud labels and user data, mapped MCC codes to readable categories, converted monetary strings to floats, removed negative amounts, and imputed meaningfully missing categories (e.g., ONLINE, NONE). Outliers were trimmed conservatively using a widened IQR rule, yielding ~2.31M cleaned observations."
+      "content": "## Data Preparation\nThe analysis was performed on a Kaggle dataset comprising transaction logs, user demographics, and merchant details. The initial dataset of approximately 6.7 million transactions from 2015–2019 underwent a rigorous cleaning and preprocessing pipeline. This included standardizing geographical data, filtering for high-volume countries, mapping merchant category codes (MCC) to descriptive labels, and converting data types. Outliers were managed using a conservative IQR-based approach, resulting in a refined dataset of approximately 2.31 million observations ready for analysis."
+    },
+    {
+      "type": "image",
+      "src": "/portfolio/images/proj10_credit_card_fraud/data_prep.png",
+      "caption": "Diagram illustrating the data preparation and cleaning steps.",
+      "align": "center"
     },
     {
       "type": "text",
-      "content": "## Exploratory Data Analysis\nExploratory analysis showed that fraudulent transactions tended to be higher in value and more variable. Seniors (61+) were more vulnerable across both datasets. Income effects differed: offline fraud skewed to >$200k, while online peaked at $150k–$200k. Rare merchant categories (e.g., musical instruments, floor coverings, metal products, computer equipment) exhibited elevated fraud rates. Offline fraud clustered during business hours and weekdays (Thu–Fri). Correlations with the target were low overall (amount ~0.09), while demographic–financial relationships behaved plausibly (e.g., income ↑ with debt; age ↑ with cards owned)."
+      "content": "## Exploratory Data Analysis\nExploratory data analysis revealed several key patterns. Fraudulent transactions were typically of higher monetary value and exhibited greater variance than legitimate ones. Demographic analysis indicated that seniors (61+) were disproportionately affected in both online and offline contexts. Furthermore, specific merchant categories with lower transaction volumes showed elevated fraud rates. Temporal analysis of offline data identified peak fraud occurrences during business hours on Thursdays and Fridays, providing valuable insights for feature engineering."
+    },
+     {
+      "type": "image",
+      "src": "/portfolio/images/proj10_credit_card_fraud/EDA0.png",
+      "caption": "The transactions are split into offline and online transactions datasets, with online transactions having a higher rate of fraud.",
+      "align": "center"
+    },
+    {
+      "type": "image",
+      "src": "/portfolio/images/proj10_credit_card_fraud/EDA1.png",
+      "caption": "Fraudalent transactions tend to be of higher value.",
+      "align": "center"
+    },
+    {
+      "type": "image",
+      "src": "/portfolio/images/proj10_credit_card_fraud/EDA2.png",
+      "caption": "Seniors 61 and above are most likely to fall victim to fraud.",
+      "align": "center"
+    },
+    {
+      "type": "image",
+      "src": "/portfolio/images/proj10_credit_card_fraud/EDA3.png",
+      "caption": "Certain merchant categories were more prone to credit card fraud, especially those with less frequent transactions.",
+      "align": "center"
     },
     {
       "type": "text",
-      "content": "## Feature Engineering\nFeature engineering extracted transaction hour/day/month from timestamps; one-hot encoded low-cardinality features (use_chip, gender, dayofweek); target-encoded high-cardinality features (merchant_category, merchant_city, merchant_state, identifiers, transaction_month, transaction_hour); and expanded multi-error fields into binary indicators. Numerical features were scaled to support distance-based learners. Severe class imbalance was mitigated with under-sampling during modeling to stabilize training and evaluation."
+      "content": "## Feature Engineering\nTo enhance model performance, a comprehensive feature engineering process was implemented. Temporal features were extracted from transaction timestamps, while categorical variables were transformed using one-hot and target encoding. The significant class imbalance inherent in fraud detection was addressed by integrating under-sampling techniques into the modeling pipeline, which stabilized training and produced more reliable evaluation metrics."
     },
     {
       "type": "text",
-      "content": "## Model Development\nSeven learners—Logistic Regression, Decision Tree, Random Forest, Gradient Boosting, SVC, KNN, and a small Neural Network—were benchmarked via 5-fold cross-validation on each dataset using F1 as the primary metric (with accuracy, precision, recall, fit/score times for context). For the offline dataset, the tuned Random Forest achieved F1 = 0.8499 (precision = 0.9320, recall = 0.7811). For the online dataset, the tuned Random Forest plus threshold adjustment achieved F1 = 0.8931 (precision = 0.9837, recall = 0.8178). SVC and others trailed on F1 and/or operational latency, so two Random Forests—one per dataset—were selected as the final champions."
+      "content": "## Model Development\nSeven binary classification models (Logistic Regression, Decision Tree, Random Forest, Neural Networks, Gradient Boosting, SVC, and KNN) were benchmarked using 5-fold cross-validation, with the F1-score as the primary evaluation metric. The Random Forest classifier consistently emerged as the best-performing model for both datasets. After hyperparameter tuning, the champion models achieved an F1-score of 0.8499 for the offline dataset and 0.8931 for the online dataset, successfully surpassing the project's target of 0.80."
+    },
+    {
+      "type": "image",
+      "src": "/portfolio/images/proj10_credit_card_fraud/modelling1.png",
+      "caption": "List of classification models considered for this project.",
+      "align": "center"
+    },
+    {
+      "type": "image",
+      "src": "/portfolio/images/proj10_credit_card_fraud/modelling2.png",
+      "caption": "Models results for offline transactions before hyperparameter tuning. Random Forest is the best performing model.",
+      "align": "center"
+    },
+    {
+      "type": "image",
+      "src": "/portfolio/images/proj10_credit_card_fraud/modelling3.png",
+      "caption": "Models results for offline transactions before hyperparameter tuning. Random Forest is the best performing model.",
+      "align": "center"
     },
     {
       "type": "text",
-      "content": "## Threshold Tuning\nThreshold tuning explored the precision–recall trade-off. Offline performance peaked at F1 = 0.8603 near a higher threshold but sacrificed recall; given fraud ops typically prioritize recall, we retained the tuned model’s default threshold (F1 = 0.8499, precision = 0.9320, recall = 0.7811). Online performance improved with a lower threshold to F1 = 0.8931 (precision = 0.9837, recall = 0.8178), which was adopted."
+      "content": "## Model Performance\nAfter threshold tuning, the models demonstrated excellent performance. The offline model achieved an accuracy of 0.9997, precision of 0.9320, and recall of 0.7811. The online model achieved an accuracy of 0.9988, precision of 0.9837, and recall of 0.8178. This balance ensures that a high number of fraudulent transactions are caught without generating an excessive number of false positives."
+    },
+    {
+      "type": "image",
+      "src": "/portfolio/images/proj10_credit_card_fraud/modelling_final.png",
+      "caption": "Models results after tuning, for both offline and online transactions datasets.",
+      "align": "center"
+    },
+    {
+      "type": "image",
+      "src": "/portfolio/images/proj10_credit_card_fraud/modelling_final1.png",
+      "caption": "Confusion Matrix for the champion model trained on the offline transactions dataset after tuning.",
+      "align": "center"
+    },
+    {
+      "type": "image",
+      "src": "/portfolio/images/proj10_credit_card_fraud/modelling_final2.png",
+      "caption": "Confusion Matrix for the champion model trained on the online transactions dataset after tuning.",
+      "align": "center"
     },
     {
       "type": "text",
-      "content": "## Feature Importance\nFeature importance aligned with domain intuition. Offline: merchant location (city/state) dominated, followed by merchant and card identifiers and merchant category, indicating location- and merchant-specific risk pockets. Online: merchant_id was the single most influential factor (>40% contribution), with merchant_category, card_id, and transaction_amount also informative."
+      "content": "## Feature Importance\nAnalysis of the Random Forest models confirmed domain-specific intuitions. For offline transactions, merchant location (city and state) was the most critical predictive feature, highlighting geographical risk factors. In the online context, the unique merchant identifier and merchant category were the most dominant predictors, guiding the model's decision-making process."
     },
     {
       "type": "text",
-      "content": "## Business Impact\nBusiness impact was estimated by comparing losses with and without model intervention, assuming 100% loss on undetected fraud and a 5% operational cost on false positives. For offline transactions, estimated savings were ~$24,742/year (68.54% reduction). For online transactions, savings were ~$50,437/year (83.37% reduction). High precision suggests investigators and customers can be alerted without being overwhelmed by false positives, while recall near ~0.8 captures the majority of fraud."
+      "content": "## Business Impact\nThe business impact was quantified by estimating the reduction in financial losses based on a sample of 2000 customers. The model for offline transactions was projected to reduce fraud-related costs by 68.54%. The online model demonstrated even greater efficacy, with a projected cost reduction of 83.37%. The high precision of both models ensures that fraud alerts are reliable, minimizing false positives and operational overhead."
+    },
+    {
+      "type": "image",
+      "src": "/portfolio/images/proj10_credit_card_fraud/impact.png",
+      "caption": "Estimated impact of using the models for fraud detection.",
+      "align": "center"
     },
     {
       "type": "text",
-      "content": "## Limitations and Future Work\nLimitations include absence of behavioral sequence features and potential bias from under-sampling. Recommendations: deploy models within bank/card-issuer backends for near real-time scoring with periodic retraining; incorporate SHAP/LIME for explainability and regulatory compliance; monitor merchant-level risk (especially online) and consider commercial controls for persistently high-risk merchants. Future work can expand hyperparameter searches, add temporal/graph features, and explore cost-sensitive learning to align directly with business loss functions."
+      "content": "## Limitations and Future Work\nKey limitations include the absence of behavioral sequence features and potential biases introduced by the under-sampling method. For deployment, it is recommended to integrate the models into a bank's real-time scoring engine with periodic retraining. Future work could focus on hyperparameter tuning of other models, incorporating explainable AI techniques like SHAP for regulatory compliance, and exploring more advanced features."
     },
     {
       "type": "text",
-      "content": "## Note\nThis is an educational project using synthetic/aggregated real-world-style data; results are indicative and would require production hardening, live calibration, and governance before deployment."
+      "content": "## Note\nThis project was conducted for educational purposes using publicly available data. The results are indicative of the models' potential and would require further validation, production hardening, and governance before live deployment in a commercial environment. The full project report was submitted as part of ANL588 - Applied Project"
     }
   ]
   },
@@ -981,24 +1088,28 @@ export const projects: ProjectType[] = [
     "date": "2025-09-26",
     "externalLinks": [
       {
-        "label": "View Prompt Engineering Results",
+        "label": "View Prompting Results",
         "url": "/portfolio/images/proj11_aes/Prompt Engineering Results.pdf",
-        "description": "A PDF document showing the prompts used and the results from the LLM on the test set."
+        "description": "PDF document showing the prompts used and the results from the LLM on the test set."
       }
     ],
 
     "blocks": [
       {
         "type": "text",
-        "content": "This project assessed the ability to use generative AI and prompt engineering to automate the scoring of English essays. The primary objective was to design a scoring approach using a Large Language Model (LLM) that aligns with a provided rubric for evaluating content and language, enhancing human-AI collaboration to reduce the manual workload for teachers."
+        "content": "## Project Overview\nThis project assessed the ability to use generative AI and prompt engineering to automate the scoring of English essays. The primary objective was to design a scoring approach using a Large Language Model (LLM) that aligns with a provided rubric for evaluating content and language, enhancing human-AI collaboration to reduce the manual workload for teachers."
       },
       {
         "type": "text",
-        "content": "The core task was to design and test prompts on a dataset of 100 essays. The prompt engineering process involved instructing the model to act as an experienced marker, providing it with specific marking rubrics, and using in-context learning (One-shot prompting) to guide its response format. The final prompt requested the model to return the essay ID, a score from 1 to 6, and a concise rationale for its decision. This prompt was then tested on a set of 10 essays to evaluate its effectiveness."
+        "content": "## Prompt Engineering\nThe core task was to design and test prompts on a dataset of 100 essays. The prompt engineering process involved instructing the model to act as an experienced marker, providing it with specific marking rubrics, and using in-context learning (One-shot prompting) to guide its response format. The final prompt requested the model to return the essay ID, a score from 1 to 6, and a concise rationale for its decision. This prompt was then tested on a set of 10 essays to evaluate its effectiveness."
       },
       {
         "type": "text",
         "content": "A key challenge was ensuring scoring consistency across different runs. This was addressed by using a model with a temperature setting of 0 to ensure deterministic outputs. For a real-world scenario, this approach could be improved by using Supervised Fine-Tuning (SFT) on a larger dataset and building an end-to-end automated system that programmatically constructs prompts, calls an LLM via an API, and stores the results in a database for teacher verification."
+      },
+      {
+        "type": "text",
+        "content": "## Note\nThis project was created as part of a certain company's job assessment process."
       }
     ]
   }

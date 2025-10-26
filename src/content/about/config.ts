@@ -51,11 +51,11 @@ export const education: Education[] = [
   {
     degree: 'Master of Analytics and Visualisation ',
     institution: 'Singapore University of Social Sciences',
-    year: '2025',
+    year: '2023 - 2025',
   },
   {
     degree: 'Bachelor of Engineering (Materials Engineering), Honours (Distinction)',
     institution: 'Nanyang Technological University',
-    year: '2019',
+    year: '2015 - 2019',
   },
 ];

@@ -31,7 +31,7 @@ export const portfolioConfig = {
       },
       {
         emoji: "🧠",
-        title: "LLM",
+        title: "LLMs",
         bgColor: "from-cyan-500 to-cyan-600",
       },
     ],
