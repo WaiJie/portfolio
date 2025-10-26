@@ -6,7 +6,6 @@ import { projects } from '../content/projects/config';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import Header from '../components/header';
-import Footer from '../components/footer';
 
 interface ContentBlock {
   type: 'text' | 'image' | 'code';
@@ -214,8 +213,6 @@ export default function ProjectDetail() {
           )}
         </motion.div>
       </div>
-
-      <Footer />
     </div>
   );
 }

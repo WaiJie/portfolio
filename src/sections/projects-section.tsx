@@ -39,7 +39,6 @@ export default function ProjectsSection() {
             variants={fadeUp}
             transition={{ duration: 0.35, delay: index * 0.05 }}
             className="relative rounded-xl overflow-hidden group enhanced-card project-card texture-overlay"
-            style={{ backgroundColor: 'var(--tag-bg)', border: 'none' }}
           >
             <Link to={`/projects/${project.slug}`} className="block h-full">
               {/* Project Image */}

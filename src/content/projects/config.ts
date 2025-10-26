@@ -542,7 +542,8 @@ export const projects: ProjectType[] = [
   "externalLinks": [
     {
       "label": "View R Code",
-      "url": "https://waijie-portfolio.streamlit.app/Forecasting-Temperatures-In-Singapore"
+      "url": "https://waijie-portfolio.streamlit.app/Forecasting-Temperatures-In-Singapore",
+      "description" : "View the R code used for this forecasting project"
     }
   ],
   "technologies": ["R", "ARIMA", "ARIMAX", "Double Exponential Smoothing", "Data Visualization"],
@@ -968,7 +969,39 @@ export const projects: ProjectType[] = [
       "content": "## Note\nThis is an educational project using synthetic/aggregated real-world-style data; results are indicative and would require production hardening, live calibration, and governance before deployment."
     }
   ]
-}
+  },
+  {
+    "id": "11",
+    "title": "Automated Scoring of English Essays",
+    "slug": "automated-essay-scoring",
+    "shortDescription": "An exploration into developing an Automated Essay Scoring (AES) system using Large Language Models. This project focuses on advanced prompt engineering techniques and evaluation methodologies to achieve high agreeableness with human markers.",
+    "image": "https://images.pexels.com/photos/18069696/pexels-photo-18069696.png",
+    "photo_credit": "Photo by Google DeepMind from Pexels: https://www.pexels.com/photo/an-artist-s-illustration-of-artificial-intelligence-ai-this-illustration-depicts-language-models-which-generate-text-it-was-created-by-wes-cockx-as-part-of-the-visualising-ai-project-l-18069696/",
+    "tags": ["LLM", "Prompt Engineering", "Gemini", "NLP", "QWK"],
+    "date": "2025-09-26",
+    "externalLinks": [
+      {
+        "label": "View Prompt Engineering Results",
+        "url": "/portfolio/images/proj11_aes/Prompt Engineering Results.pdf",
+        "description": "A PDF document showing the prompts used and the results from the LLM on the test set."
+      }
+    ],
+
+    "blocks": [
+      {
+        "type": "text",
+        "content": "This project assessed the ability to use generative AI and prompt engineering to automate the scoring of English essays. The primary objective was to design a scoring approach using a Large Language Model (LLM) that aligns with a provided rubric for evaluating content and language, enhancing human-AI collaboration to reduce the manual workload for teachers."
+      },
+      {
+        "type": "text",
+        "content": "The core task was to design and test prompts on a dataset of 100 essays. The prompt engineering process involved instructing the model to act as an experienced marker, providing it with specific marking rubrics, and using in-context learning (One-shot prompting) to guide its response format. The final prompt requested the model to return the essay ID, a score from 1 to 6, and a concise rationale for its decision. This prompt was then tested on a set of 10 essays to evaluate its effectiveness."
+      },
+      {
+        "type": "text",
+        "content": "A key challenge was ensuring scoring consistency across different runs. This was addressed by using a model with a temperature setting of 0 to ensure deterministic outputs. For a real-world scenario, this approach could be improved by using Supervised Fine-Tuning (SFT) on a larger dataset and building an end-to-end automated system that programmatically constructs prompts, calls an LLM via an API, and stores the results in a database for teacher verification."
+      }
+    ]
+  }
 ];
 
 // Sort projects by date (newest first)

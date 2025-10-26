@@ -1,127 +1,33 @@
 # Data Science Portfolio
 
-A responsive portfolio site built with **React**, **TypeScript**, and **Tailwind CSS**, designed to showcase data science projects with support for embedding **Jupyter Notebooks**.
-
----
-
-## 🚀 Features
-
-- Responsive, mobile-first design  
-- Fast loading with Vite  
-- Project pages with notebook embedding  
-- Smooth animations via Framer Motion  
-- SEO optimized  
-
----
-
-## 🛠 Getting Started
-
-### Prerequisites
-
-- Node.js v16+
-- npm or yarn
-
-### Setup
-
-```bash
-git clone https://github.com/yourusername/portfolio.git
-cd portfolio
-npm install
-npm run dev
-```
-
-Visit: [http://localhost:5173](http://localhost:5173)
-
----
-
-## 📦 Deployment (GitHub Pages)
-
-1. Set `homepage` in `package.json`:
-
-```json
-"homepage": "https://yourusername.github.io/portfolio"
-```
-
-2. Set `base` in `vite.config.ts`:
-
-```ts
-base: '/portfolio/'
-```
-
-3. Set `basename` in `src/App.tsx`:
-
-```tsx
-<Router basename="/portfolio">
-```
-
-4. Deploy:
-
-```bash
-npm run deploy
-```
-
----
-
-## ⚙️ Customization
-
-### Add Projects
-
-Edit `src/lib/data.ts`:
-
-```ts
-export const projects = [
-  {
-    id: "project-id",
-    title: "Project Title",
-    slug: "project-slug",
-    shortDescription: "Brief summary",
-    fullDescription: "Detailed write-up",
-    image: "https://link-to-image.com",
-    tags: ["Tag1", "Tag2"],
-    githubUrl: "...",
-    liveUrl: "...",
-    notebookUrl: "...",
-    technologies: ["Python", "Pandas"],
-    challenges: ["Challenge 1"],
-    outcomes: ["Outcome 1"]
-  }
-];
-```
-
-### Embed Notebooks
-
-1. Upload notebook to GitHub
-2. Use nbviewer URL:
-   `https://nbviewer.org/github/username/repo/blob/main/notebook.ipynb`
-3. Add the link to `notebookUrl`
-
-### Update Personal Info
-
-* `src/sections/hero-section.tsx` – basic info and links
-* `src/sections/about-me-comprehensive-section.tsx` – bio and education
-* `src/lib/data.ts` – skills and experience
+This site serves as a dynamic portfolio, showcasing various data science projects.
 
 ---
 
 ## 🧱 Tech Stack
 
-* React 18
-* TypeScript
-* Tailwind CSS
-* Vite
-* Framer Motion
-* React Router
-* Lucide React (icons)
+---
+
+- React 18
+- TypeScript
+- Tailwind CSS
+- Vite
+- Framer Motion
+- React Router
+- Lucide React (icons)
 
 ---
 
-## 📄 License
-
-MIT License
+## 📂 Portfolio Content Structure
 
 ---
 
-## ⚠️ Disclaimer
+This site is organized to clearly present data science projects and related documentation.
 
-This portfolio was built with the assistance of AI tools, including code generation and documentation support.
+-   **`src/pages`**: Contains the main page components, such as `Home.tsx` and `ProjectDetail.tsx`, defining the layout and routing for different views of the portfolio.
+-   **`src/sections`**: Houses reusable UI sections like `HeroSection`, `ProjectsSection`, `AboutMeComprehensiveSection`, and `ContactSection`, which compose the content of the main pages.
+-   **`src/content/projects`**: This directory is where all project-specific data is stored. Each project is defined with detailed descriptions, images, tags, and external links (including PDF documents), making it easy to manage and update portfolio entries.
+-   **`src`**: The overall application's source code resides within this directory, encompassing all components, contexts, and utility functions.
+-   **`portfolio`**: As indicated by the `basename` in `App.tsx` and deployment settings, this serves as the base path for the deployed application, ensuring all assets and routes are correctly resolved.
 
+---

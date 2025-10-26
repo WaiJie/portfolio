@@ -9,7 +9,7 @@
 
 /* ---------- LIGHT – e-book paper beige ---------- */
 :root {
-  --bg: #fdfcf8;
+  --bg: #f9f5e9;
   --bg-soft: #f5f2e8;
 
   --text: #3a2b18;
@@ -19,15 +19,15 @@
   --accent-soft: #e6c158;
   --glow: rgba(212, 160, 23, 0.28);
 
-  --card-bg: rgba(253, 252, 248, 0.82);
-  --card-border: rgba(255, 255, 255, 0.9);
+  --card-bg: rgba(252, 250, 244, 0.82);
+  --card-border: rgba(252, 250, 244, 0.9);
 
-  --tag-bg: #f9f5e9;
+  --tag-bg: #fcfaf4; /* Lighter beige for cards */
   --tag-text: #6b5525;
 
   --link: #b5841f;
 
-  --about-pill-bg: #ffffff;
+  --about-pill-bg: #fcfaf4;
   --about-pill-text: #6b5525;
 }
 
@@ -93,7 +93,6 @@ body {
 ========================================================= */
 .enhanced-card {
   background: var(--card-bg);
-  backdrop-filter: blur(10px);
   border-radius: 0.75rem;
   border: 2px solid var(--card-border);
   transition: transform 0.2s ease;
@@ -122,12 +121,30 @@ body {
   background: var(--tag-bg);
   border: none;
   box-shadow: none;
-  backdrop-filter: blur(10px);
 }
 .project-card-wrapper:hover,
 .about-card:hover {
   transform: translateY(-2px) scale(1.01);
   box-shadow: 0 3px 8px var(--glow);
+}
+
+/* Unify Project Card and Header backgrounds */
+:root .project-card,
+:root .header-background {
+  /* Use the beige color for light mode */
+  background: var(--tag-bg);
+  backdrop-filter: none;
+  border: none;
+}
+.dark .project-card,
+.dark .header-background {
+  /* In dark mode, use the glassy card background */
+  background: var(--card-bg);
+}
+
+.project-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 4px 12px var(--glow);
 }
 
 /* =========================================================
@@ -230,7 +247,6 @@ a:hover { color: var(--accent); }
 ========================================================= */
 .footer-card {
   background: var(--card-bg);
-  backdrop-filter: blur(10px);
   border-radius: 0.75rem;
   border: 2px solid var(--card-border);
   color: var(--text);

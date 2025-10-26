@@ -82,7 +82,7 @@ export default function Header() {
   };
 
   const headerClasses =
-    'fixed top-0 left-0 right-0 z-50 bg-[var(--bg)] dark:bg-[var(--bg-soft)] shadow-sm py-4';
+    'fixed top-0 left-0 right-0 z-50 header-background shadow-sm py-4';
 
   const DesktopNav = () => (
     <div className="hidden md:flex items-center space-x-6">
