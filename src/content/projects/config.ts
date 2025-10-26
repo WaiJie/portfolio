@@ -758,16 +758,28 @@ export const projects: ProjectType[] = [
   "date": "2024-11-20",
   "blocks": [
     {
-      "type": "text",
-      "content": "## Overview\n\nThis project employed NLP techniques to analyse financial analyst reports. By leveraging the pre-trained transformer-based FinBERT model, sentiment analysis was conducted, achieving 69% accuracy. Latent Dirichlet Allocation (LDA) identified key topics, including company fundamentals, dividend yields, and supply-demand dynamics. This project automates sentiment analysis and topic modelling, supporting more informed financial decision-making.\n\n*Note: Project created for educational purposes using real analyst reports.*"
+        "type": "text",
+        "content": "## Executive Summary\n\nDue to the vast volumes of data available to financial advisory firms, it has become increasingly difficult to manually analyse all available data, potentially resulting in missed opportunities. Therefore, this project proposes using sentiment analysis and topic modelling natural language processing (NLP) techniques to automatically structure and extract insights from unstructured data sources, such as analyst reports on stocks. The results show that a pre-trained FinBERT model can label the sentiment of each sentence in the reports with an accuracy and f1 score of 69%. Additionally, topic modelling using LDA was able to cluster the sentences into topics that refer to aspects of the company, which include dividends, company fundamentals, and supply demand chains. Together, these were analysed to obtain a more granular topic-based sentiment analysis for each aspect of the company. These results can then be used directly to enhance decision making, or act as inputs to power downstream tasks such as stock price forecasting and portfolio management."
     },
     {
-      "type": "text",
-      "content": "## Introduction & Problem Statement\n\nThe financial industry generates massive amounts of text data, and extracting valuable insights manually is time-consuming. Sentiment analysis can reveal market sentiment and investor behavior, improving stock forecasting models. Analyst reports provide expert-driven insights with both subjective and objective statements, making them ideal for topic-based sentiment analysis."
+        "type": "text",
+        "content": "## Introduction & Problem Statement\n\nWith advancements in analytics and artificial intelligence,  global spending on financial market data and news has hit a new high of 42 billion dollars in 2023 (Basar, 2024). The large volume of data available makes it problematic for financial firms to manually sieve through their data and extract usable insights. One of the main methods used to extract insights from financial text data is sentiment analysis. Financial sentiment analysis (FSA) is the measurement of the positivity or negativity in financial texts. FSA can be used to gauge investor sentiment, which in turn aggregates to market sentiment and affects trading behaviour in the financial markets.  Research has shown that incorporating market sentiment can improve the performance of stock forecasting models. Their best forecasting model incorporating market sentiment achieved an annualised return of 45.5%, while standard ARIMA forecasting only returned 10.72% (Xing, Cambria, & Welsch, 2018).  \n\nHowever, most existing FSA solutions focus on social media and financial news headlines. Datasets annotated by finance domain experts such as the Financial PhraseBank, SemEval 2017 Task 5, and FiQA are widely used for FSA research. Financial analyst reports are much rarer, but they can contain both subjective and objective statements, which can offer deeper, expert-driven insights into company performance.\nCombining sentiment analysis and topic modelling to extract topic-based sentiments is also not new. In an article published on Medium, Latent Dirichlet Allocation (LDA) and sentiment analysis techniques were used to obtain doctor ratings by topic (Wang, 2017). These topics range from specialist care like dental care to other topics like payment and office visit experience. This signals the possibility of implementing a topic-based sentiment analysis on analyst reports, where sentiments can differ on each aspect of a company analysed by financial analysts."
     },
     {
-      "type": "text",
-      "content": "## Problem Definition\n\nThis project aims to develop an NLP solution that automates sentiment analysis and topic modeling of analyst reports, enabling financial analysts to make informed decisions and improve forecasting accuracy."
+        "type": "text",
+        "content": "## Problem Definition\n\nTherefore, this project seeks to develop an NLP solution for sentiment analysis and topic modelling within analyst reports focusing on stocks. These reports contain domain specific text that presents different challenges from news headlines or social media posts. The solution aims to help financial analysts by automating sentiment extraction for each topic mentioned in the reports, enhancing decision making processes, and providing an additional data source for stock forecasting and portfolio management."
+    },
+    {
+        "type": "text",
+        "content": "## Significance of the Problem\n\nBy developing a solution that addresses sentiment analysis and topic modelling of analyst reports, this project can enable our organisation to better leverage sentiment in financial analysis, enhance stock forecasting accuracy, and improve portfolio management."
+    },
+    {
+        "type": "text",
+        "content": "## Methodology"
+    },
+    {
+        "type": "text",
+        "content": "## Data Sources\nThe given analyst reports dataset in PDF format was chosen as the source of data for this project. Sentences from four analyst reports released by Morgan Stanley were extracted from the first page of each report, where they usually present their analysis on the company and industry. Each sentence’s sentiment was also manually evaluated and annotated to be either positive, negative, or neutral from the perspective of someone who is invested in the company. The dataset was then saved as a csv file to be used in the project. In this dataset, the ‘Source’ column refers to the PDF file name, while ‘Sentence’ and ‘Sentiment_label’ column contain the extracted sentences and labelled sentiments respectively."
     },
     {
       "type": "image",
@@ -776,8 +788,8 @@ export const projects: ProjectType[] = [
       "align": "center"
     },
     {
-      "type": "text",
-      "content": "## Methodology\n\n### Data Collection and Preprocessing\n- Data Extraction: Sentences extracted from the first page of each report.\n- Data Labeling: Each sentence manually labeled as positive, negative, or neutral.\n- Preprocessing: Cleaning, tokenization, stop word removal, and lemmatization."
+        "type": "text",
+        "content": "## Data Cleaning and Pre-processing\nThe data preprocessing process involves tokenisation by splitting sentences based on spacing, removing all special characters such as the newline character and replacing them with space, and keeping alphanumeric characters only. The tokens were also converted to lowercase and words specified in the ‘keep list’ containing common words with dots were retained. Stop words were then removed from the sentences to prioritise the meaningful words in the sentences. Subsequently, the WordNetLemmatizer package was employed to lemmatize the words into their base forms."
     },
     {
       "type": "image",
@@ -786,8 +798,24 @@ export const projects: ProjectType[] = [
       "align": "center"
     },
     {
-      "type": "text",
-      "content": "### Sentiment Analysis\n- Model Selection: Pre-trained FinBERT from HuggingFace.\n- Implementation: Predicted sentiment as positive, negative, or neutral.\n- Evaluation: Accuracy and F1-score metrics."
+        "type": "text",
+        "content": "The abbreviations ‘uw’, ‘ow’ and ‘ew’, which correspond to ‘underweight’, ’overweight’ and ‘equal weight’ stock ratings in the analyst reports were also replaced with their full form to better convey their meaning. The reason for this is that the abbreviated forms are not accounted for as they are unknown words to the pre-trained model."
+    },
+    {
+        "type": "text",
+        "content": "## Dataset for Sentiment Analysis\nThe prepared dataset contains a total of 58 rows and 3 columns. In terms of class distribution, the dataset has 30 sentences labelled positive, 18 negative and 10 neutral. The ‘Source’ column refers to the PDF file name, while the ‘Sentiment_label’ refers to manually annotated sentiment labels. This label column will be used as the true label (target variable) when evaluating the performance of the pre-trained models for sentiment analysis. Most importantly, the ‘cleaned_corpus’ column consists of the pre-processed text corpus that will be the feature used for sentiment analysis in this project."
+    },
+    {
+        "type": "text",
+        "content": "## Feature Extraction for Topic Modelling\nTo prepare for topic modelling, the CountVectorizer from sklearn was used to vectorise the pre-processed corpus as a bag-of-words (BoW). The text features were limited using the max_df and min_df arguments to reduce the dimensionality of the BoW vectors by removing the words that are too rare or common in the corpus. Bigrams were also included to improve the text representation and remove ambiguity when interpreting financial terms, especially for topic modelling as the topics need to be inferred manually . The result is a text matrix of 58 rows and 83 columns, whereby each column is a text feature."
+    },
+    {
+        "type": "text",
+        "content": "## Model Selection\nDue to the heavy use of metaphors, financial jargon, and the use of concise language in financial reports (Du, Xing, Mao, & Cambria, 2024), financial sentiment analysis is different from sentiment analysis of other types of text. The selected model would need to be able to understand the context of domain-specific terms and metaphors. \n\nHowever, as the amount of data available is small, it was not practical to train a custom machine learning model for this project. Hence, a pre-trained FinBERT model was selected to perform sentiment analysis of the sentences extracted from the analyst reports. This FinBERT model is a domain-specific BERT model pre-trained on a large corpus of financial communication texts, including analyst reports. It was shown to outperform the standard BERT model on financial sentiment analysis tasks, achieving a 4.3 % improvement (Yang, Huang, & Siy UY, 2020) over the standard BERT uncased model. \n\nFor topic modelling, a (Latent Dirichlet allocation) LDA model was selected due to its consistently better performance in runtime and topic coherence (Bellaouar, Bellaouar, & Ghada, 2021) compared to the LSA model."
+    },
+    {
+        "type": "text",
+        "content": "## Results and Discussion : Sentiment Analysis Using FinBERT\nAs a pre-trained FinBERT model was selected, no model training was required. The model was imported from the transformers library and directly used to classify the sentiment of each sentence as either ‘Positive’, ‘Negative’, or ‘Neutral’."
     },
     {
       "type": "image",
@@ -796,8 +824,8 @@ export const projects: ProjectType[] = [
       "align": "center"
     },
     {
-      "type": "text",
-      "content": "### Topic Modeling\n- Feature Extraction: Bag-of-words with bigrams.\n- Model: Latent Dirichlet Allocation (LDA).\n- Implementation: Trained on preprocessed text to identify latent topics.\n- Interpretation: Top words examined to understand each topic."
+        "type": "text",
+        "content": "After implementing the FinBERT model, the model was evaluated based on its accuracy and f1 score against the manually annotated sentiment labels. It achieved an accuracy score of about 69%, which is lower than expected given that this is close to the original use case of the model. The creators of the FinBERT model were able to achieve an accuracy of 88.7% when using their model on the AnalystTone dataset, which is a dataset of 10000 sentences from analyst reports (Yang, Huang, & Siy UY, 2020). \n\nHowever, another team of researchers (Karanikola, Davrazos, Liapis, & Kotsiantis, 2023) also obtained an accuracy close to 65% when predicting sentiment labels with FinBERT. This aligns with my results, and it is documented that they used a similar text preprocessing pipeline including stop word removal , lower casing and lemmatization.  Hence, it may be possible that the preprocessing steps of the FinBERT creator’s dataset were different, leading to a large difference in accuracy. Unfortunately, their paper does not mention their preprocessing steps."
     },
     {
       "type": "image",
@@ -806,12 +834,12 @@ export const projects: ProjectType[] = [
       "align": "center"
     },
     {
-      "type": "text",
-      "content": "Challenges in sentiment analysis:\n- Financial jargon misclassified.\n- Quantitative comparisons difficult for the model."
+        "type": "text",
+        "content": "To figure out the strengths and weaknesses of the model in predicting the sentiment in analyst report sentences,  a confusion matrix was created. The confusion matrix shows that the model was able to classify most of the positive and negative sentiment sentences accurately. 26 out of 30 true positives were correctly classified, while 6 out of 10 true neutral labels are correct. The performance for negative labels was the worst, with only 8 out of 18 correct."
     },
     {
-      "type": "text",
-      "content": "### Topic Modeling Results\nThree main topics identified:\n1. Supply and demand trends\n2. Company fundamentals\n3. Dividend yields and payouts"
+        "type": "text",
+        "content": "## Results and Discussion : Topic Modelling with LDA\nFor topic modelling using LDA, the implementation was carried out using the LatentDirichletAllocation model from the sklearn library. The main hyperparameter to adjust is the number of topics, which was set to 3 due to the small dataset. The expected output of the model is a matrix of probabilities, where each column is the probability of the sentence belonging to that topic."
     },
     {
       "type": "image",
@@ -826,16 +854,20 @@ export const projects: ProjectType[] = [
       "align": "center"
     },
     {
-      "type": "text",
-      "content": "By combining sentiment analysis and topic modeling, topic-based sentiment insights were obtained, allowing a granular understanding of analyst reports."
+        "type": "text",
+        "content": "Since topic modelling is an unsupervised machine learning model, the topic clusters must be manually inferred from the top 30 relevant words. From the words in topic 1, it is likely referring to the outlook due to changes in the supply and demand chain in 2022, which has been impacted by the pandemic previously. This can be inferred from the words ‘2022’,‘supply demand’, ‘outlook’ and ‘pandemic’.\n\nFor the words in topic 2, the topic is mainly focused on company fundamentals, including factors like growth and debt. This is evident from words like ‘ loan growth’, ‘cash’, and ‘ratio’ , which commonly refer to company fundamentals like its cash flow or debt-to-equity ratios.\n\nThe words in topic 3 are much more obvious, with most of them referring to dividend yields and payouts. Words such as ‘dividend’, ‘payout’, and ‘yield’ dominate this topic."
     },
     {
-      "type": "text",
-      "content": "## Conclusion and Recommendations\n\nThe developed NLP solution demonstrates potential for automating sentiment and topic analysis of analyst reports. Areas for improvement:\n- Advanced language models (e.g., ChatGPT-4) to handle financial jargon and quantitative comparisons.\n- Optimized preprocessing for financial domain language.\n- Automated pipelines for PDF extraction and preprocessing.\n\nThese enhancements can provide deeper insights for financial analysts and improve investment decisions."
+        "type": "text",
+        "content": "## Interpretation of Results – Topic-based Sentiment Analysis\nBy combining topic modelling and sentiment analysis, a more granular topic-based sentiment analysis can be performed. From the sentiment analysis and topic modelling above, each sentence was assigned a topic through LDA and a sentiment label by FinBERT. After aggregating these scores by source document and topic, we can get an overall sentiment for each topical aspect of the documents.\n\nAs seen in the figure above, each analyst report (source) has a count of the number of positive, neutral, and negative sentiments assigned by FinBERT. Using the WPG Holdings report as an example, the document has a majority positive sentiment in topic 1. This would mean that the sentiment of the supply-demand chain topic is positive for this report. This corresponds well with the report title highlighting ‘Supply constraint easing’, pointing to a positive sentiment in terms of the supply and demand topic. Similarly, when looking at the majority positive sentiment for topic 3 of the Innolux report, it can be expected that there is some positive news about dividends mentioned in the report. Indeed, the Innolux report mentions a more stable dividend policy. With this solution, we are now able to extract insights about each topic without directly reading the whole report."
     },
     {
-      "type": "text",
-      "content": "The full version of this project was submitted as part of AIB551 - Natural Language Processing."
+        "type": "text",
+        "content": "## Conclusion\nFinancial sentiment analysis is more difficult compared to other types of textual sentiment analysis. This is due to the use of financial jargon, metaphors, and inclusion of quantitative values in financial texts. In this project, a pre-trained FinBERT model was used to classify sentences from analyst reports into positive, negative, or neutral sentiment labels. It achieved an accuracy of 69%, comparable to other FinBERT models found in literature. LDA was also successfully implemented to cluster the sentences into three different topics related to supply and demand, company fundamentals, and dividend yields. Combining the two NLP techniques, a topic-based sentiment analysis of the reports was also performed, with the results in line with the headings and contents of the analyst reports.\n\nThe impact of implementing this NLP solution offers multiple benefits to our organisation. The topic-based sentiments can be directly used to aid decision-making by financial analysts or further incorporated into downstream tasks. For example, these sentiment labels or scores could be used as features or inputs in stock price forecasting and portfolio management."
+    },
+    {
+        "type": "text",
+        "content": "## Limitations and Recommendation\nAlthough the use of domain-specific transformer models like FinBERT can help to label the sentiments with good accuracy, there is still room for improvement. Specifically, the model struggles with some jargon and metaphors and is not able to interpret or compare numbers at all. Further experiments should be conducted using other transformer models for sentiment analysis, such as popular large language models (LLMs) like ChatGPT-4o, which was shown to perform as well as a fine-tuned FinBERT model (Shen & Zhang, 2024). These LLMs are more advanced and have a stronger reasoning ability to understand the financial jargon, metaphors, and numbers reported in analyst reports. This could greatly enhance the accuracy of the sentiment analysis. \n\nAnother method to enhance the accuracy of the sentiment analysis could be to optimise the text preprocessing pipeline to not remove specific combinations of financial jargon and terms, even if it is usually a stop word. For example, the word ‘in’  is usually a stop word, but in this context, ‘priced in’ is part of a commonly used financial phrase. Doing this would require a comprehensive amount of finance domain knowledge.\n\nFor the LDA model, the choice of the number of topics to use can be optimised by calculating the topic coherence score using libraries like gensim (One-Off Coder, n.d.). Using this score, the optimal number of topics can be determined by plotting the number of topics against the coherence score and finding the point whereby the score no longer increases significantly.\n\nFinally, to keep up with operational demands, automated pipelines to extract text from analyst reports and split them into sentences should be built to automatically format the PDF files into a format like the csv file created. This would allow the NLP solution to run in near real-time and provide automated sentiment analysis and topic modelling results for analysts in our organisation."
     }
   ]
   },
