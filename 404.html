@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script>
+      // Get the path from the URL, convert it to the format your app expects,
+      // and store it in sessionStorage.
+      const path = location.pathname.split('/portfolio/')[1];
+      sessionStorage.setItem('redirect', path ? '/' + path : '/');
+      // Redirect to the root of your app.
+      location.replace('/portfolio/');
+    </script>
+  </head>
+  <body></body>
+</html>
