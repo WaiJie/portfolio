@@ -13,21 +13,6 @@ const routes = [
   { name: 'Contact', path: '/#contact', section: 'contact' },
 ];
 
-const useScrollOnRouteChange = () => {
-  const { pathname, hash } = useLocation();
-  useEffect(() => {
-    if (!hash) return;
-    window.history.replaceState({}, '', pathname);
-    window.history.pushState({}, '', hash);
-    const id = hash.replace('#', '');
-    const el = document.getElementById(id);
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
-  }, [pathname, hash]);
-};
-
 const useActiveSection = () => {
   const [active, setActive] = useState<string | null>(null);
   useEffect(() => {
@@ -40,7 +25,9 @@ const useActiveSection = () => {
       }
       if (found !== active) {
         setActive(found);
-        window.history.replaceState({}, '', found ? `#${found}` : '/');
+        // This was causing the back button to navigate to "/" instead of "/portfolio".
+        // The URL hash should only be updated on explicit navigation clicks, not on scroll.
+        // window.history.replaceState({}, '', found ? `#${found}` : location.pathname);
       }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -51,7 +38,6 @@ const useActiveSection = () => {
 };
 
 export default function Header() {
-  useScrollOnRouteChange();
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -69,20 +55,23 @@ export default function Header() {
 
   const handleNavClick = (route: typeof routes[0]) => {
     if (route.section) {
-      if (location.pathname !== '/') navigate(`/#${route.section}`);
-      else {
-        window.history.replaceState({}, '', `/#${route.section}`);
-        scrollToSection(route.section);
+      if (location.pathname !== '/') {
+        navigate('/');
+        setTimeout(() => {
+          scrollToSection(route.section!);
+        }, 100);
       }
+      else scrollToSection(route.section);
     } else {
-      navigate('/');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (location.pathname !== '/') navigate('/');
+      else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
     setMobileOpen(false);
   };
 
-  const headerClasses =
-    'fixed top-0 left-0 right-0 z-50 header-background shadow-sm py-4';
+  const headerClasses ='fixed top-0 left-0 right-0 z-50 header-background shadow-sm py-4';
 
   const DesktopNav = () => (
     <div className="hidden md:flex items-center space-x-6">
