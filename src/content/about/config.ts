@@ -3,24 +3,28 @@ export const skills: Skill[] = [
   { name: 'R', category: 'Languages' },
   { name: 'SQL', category: 'Languages' },
   { name: 'SAS', category: 'Languages' },
-  { name: 'Pandas', category: 'Data Processing' },
-  { name: 'ETL', category: 'Data Processing' },
-  { name: 'Data Wrangling', category: 'Data Processing' },
-  { name: 'Data Cleaning', category: 'Data Processing' },
+  { name: 'Pandas', category: 'Data Engineering & Preparation' },
+  { name: 'ETL', category: 'Data Engineering & Preparation' },
+  { name: 'Data Wrangling', category: 'Data Engineering & Preparation' },
+  { name: 'Data Cleaning', category: 'Data Engineering & Preparation' },
+  { name: 'Data Integration', category: 'Data Engineering & Preparation' },
   { name: 'Matplotlib', category: 'Visualisation' },
   { name: 'seaborn', category: 'Visualisation' },
   { name: 'SAS Visual Analytics', category: 'Visualisation' },
   { name: 'ggplot2', category: 'Visualisation' },
-  { name: 'Scikit-learn', category: 'ML' },
-  { name: 'Regression', category: 'ML' },
-  { name: 'Classification', category: 'ML' },
-  { name: 'Clustering', category: 'ML' },
+  { name: 'Scikit-learn', category: 'AI/ML' },
+  { name: 'Regression', category: 'AI/ML' },
+  { name: 'Classification', category: 'AI/ML' },
+  { name: 'Clustering', category: 'AI/ML' },
+  { name: 'NLP', category: 'AI/ML' },
+  { name: 'Feature Engineering', category: 'AI/ML' },
+  { name: 'Model Evaluation', category: 'AI/ML' },
   { name: 'MySQL', category: 'Databases' },
   { name: 'PostgreSQL', category: 'Databases' },
   { name: 'Problem-Solving', category: 'Others' },
   { name: 'Data Storytelling', category: 'Others' },
   { name: 'Code Maintenance', category: 'Others' },
-  { name: 'NLP', category: 'Others' },
+
 ];
 
 export const workExperience: WorkExperience[] = [
@@ -45,7 +49,7 @@ export const workExperience: WorkExperience[] = [
     duration: 'June 2022 - March 2023',
     description: "Resolved technical issues and enhanced SAS code to improve the functionality, reliability, and accuracy of SAS Visual Analytics reports, including extraction of user behaviour from report logs for more precise audit logging.",
   }
-  ];
+];
 
 export const education: Education[] = [
   {

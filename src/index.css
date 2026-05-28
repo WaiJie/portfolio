@@ -95,11 +95,15 @@ body {
   background: var(--card-bg);
   border-radius: 0.75rem;
   border: 2px solid var(--card-border);
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 :root .enhanced-card { border: 2px solid var(--card-border); }
 .dark .enhanced-card { border: 1px solid var(--card-border); }
-.enhanced-card:hover { transform: translateY(-2px) scale(1.01); }
+.enhanced-card:hover {
+  transform: translateY(-2px) scale(1.01);
+  border-color: var(--accent);
+  box-shadow: 0 4px 16px var(--glow);
+}
 
 /* =========================================================
    PROJECT / ABOUT CARDS & EXTERNAL LINK WRAPPERS
@@ -109,7 +113,7 @@ body {
 .external-link-card {
   border-radius: 1rem;
   padding: 1rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .project-card-wrapper,
@@ -119,13 +123,14 @@ body {
 }
 .about-card {
   background: var(--card-bg);
-  border: none;
+  border: 1px solid var(--card-border);
   box-shadow: none;
 }
 .project-card-wrapper:hover,
 .about-card:hover {
   transform: translateY(-2px) scale(1.01);
-  box-shadow: 0 3px 8px var(--glow);
+  box-shadow: 0 4px 16px var(--glow);
+  border-color: var(--accent);
 }
 
 /* Unify Project Card and Header backgrounds */

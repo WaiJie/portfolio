@@ -124,9 +124,21 @@ export default function ProjectsSection() {
                   <h3 className="text-xl font-semibold mb-2" style={{ color: 'var(--text)' }}>
                     {project.title}
                   </h3>
-                  <p className="text-base mb-4 line-clamp-3" style={{ color: 'var(--text-muted)' }}>
+                  <p className="text-base mb-3 line-clamp-3" style={{ color: 'var(--text-muted)' }}>
                     {project.shortDescription}
                   </p>
+                  {project.tags && project.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                      {project.tags.slice(0, 4).map((tag) => (
+                        <span
+                          key={tag}
+                          className="pill px-2 py-0.5 text-[0.7rem] font-medium rounded-full"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 {/* View Project */}

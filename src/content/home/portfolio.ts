@@ -1,9 +1,9 @@
 export const portfolioConfig = {
   hero: {
     name: "Hi, I'm Wai Jie",
-    jobTitle: "Data Analytics Engineer / SAS Developer",
-    location: "Singapore",
-    shortDescription:"I’m trained in Python, SAS, and SQL. In my current role, I work on code and workflow maintenance, while also building ETL pipelines and providing clean data to support data products and visualizations. Beyond this, my interest lies in end-to-end data analytics and machine learning, and I have completed academic projects applying ML for prediction, classification, and NLP to solve complex problems and deliver measurable impact.",
+    "jobTitle": "Data Analyst | SAS Developer > AI Empowered Builder",
+    "location": "Singapore",
+    "shortDescription": "I learnt to wrangle data using Python and SQL through various academic projects and assignments, including fraud detection, topic modelling and sentiment analysis. Currently, I maintain SAS code and ETL pipelines for government systems, ensuring data quality and reliability in reports and dashboards. Outside work, I experiment with AI coding tools (Antigravity, Opencode) to build small prototypes and learn how they can speed up development. I'm looking for roles where I can solve real problems with data, whether through traditional analytics or emerging AI tooling.",
     socialLinks: {
       github: "https://github.com/WaiJie", // Replace with your GitHub URL
       linkedin: "https://www.linkedin.com/in/chuawaijie/", // Replace with your LinkedIn URL
@@ -31,7 +31,7 @@ export const portfolioConfig = {
       },
       {
         emoji: "🧠",
-        title: "LLMs",
+        title: "AI",
         bgColor: "from-cyan-500 to-cyan-600",
       },
     ],

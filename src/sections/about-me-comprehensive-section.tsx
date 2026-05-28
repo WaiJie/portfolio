@@ -59,7 +59,7 @@ export default function AboutMeComprehensiveSection() {
                 initial={fadeUp.hidden}
                 whileInView={fadeUp.visible}
                 viewport={{ once: true, amount: 0.2 }}
-                className="about-card p-4 texture-overlay hover:translate-y-[-2px] hover:scale-[1.01] transition-transform duration-200 ease-in-out"
+                className="about-card p-4 texture-overlay"
               >
                 <h5 className="text-[1.2rem] font-semibold mb-2" style={{ color: 'var(--text)' }}>
                   {category}
@@ -103,7 +103,7 @@ export default function AboutMeComprehensiveSection() {
                 initial={fadeUp.hidden}
                 whileInView={fadeUp.visible}
                 viewport={{ once: true, amount: 0.2 }}
-                className="about-card p-4 texture-overlay hover:translate-y-[-2px] hover:scale-[1.01] transition-transform duration-200 ease-in-out"
+                className="about-card p-4 texture-overlay"
               >
                 <h4 className="text-[1.2rem] font-semibold" style={{ color: 'var(--text)' }}>
                   {job.title}
@@ -146,7 +146,7 @@ export default function AboutMeComprehensiveSection() {
                 initial={fadeUp.hidden}
                 whileInView={fadeUp.visible}
                 viewport={{ once: true, amount: 0.2 }}
-                className="about-card p-4 texture-overlay hover:translate-y-[-2px] hover:scale-[1.01] transition-transform duration-200 ease-in-out"
+                className="about-card p-4 texture-overlay"
               >
                 <h4 className="text-[1.2rem] font-semibold" style={{ color: 'var(--text)' }}>
                   {edu.degree}

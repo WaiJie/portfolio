@@ -10,7 +10,7 @@ interface CardProps {
 export function Card({ children, className = '', onMouseEnter, onMouseLeave }: CardProps) {
   return (
     <div 
-      className={`bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-lg transition-all duration-300 backdrop-blur-sm ${className}`}
+      className={`bg-[var(--card-bg)] rounded-2xl border border-[var(--card-border)] shadow-sm hover:shadow-lg transition-all duration-300 backdrop-blur-sm ${className}`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
@@ -26,7 +26,7 @@ interface CardHeaderProps {
 
 export function CardHeader({ children, className = '' }: CardHeaderProps) {
   return (
-    <div className={`flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 ${className}`}>
+    <div className={`flex items-center justify-between p-6 border-b border-[var(--card-border)] ${className}`}>
       {children}
     </div>
   );
@@ -39,7 +39,7 @@ interface CardTitleProps {
 
 export function CardTitle({ children, className = '' }: CardTitleProps) {
   return (
-    <h3 className={`text-xl font-semibold text-gray-900 dark:text-white ${className}`}>
+    <h3 className={`text-xl font-semibold text-[var(--text)] ${className}`}>
       {children}
     </h3>
   );

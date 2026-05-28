@@ -9,16 +9,15 @@ const SCROLL_OFFSET = 90;
 export default function HeroSection() {
   const { name, jobTitle, location, shortDescription, socialLinks, fieldsOfInterest } = portfolioConfig.hero;
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
-  const projectTeasers = sortedProjects.slice(0, 3);
-  const currentProject = projectTeasers[currentProjectIndex];
+  const currentProject = sortedProjects[currentProjectIndex];
 
   useEffect(() => {
-    if (!projectTeasers.length) return;
+    if (!sortedProjects.length) return;
     const interval = setInterval(() => {
-      setCurrentProjectIndex((prev) => (prev + 1) % projectTeasers.length);
-    }, 8000); // slower slideshow, 8 seconds
+      setCurrentProjectIndex((prev) => (prev + 1) % sortedProjects.length);
+    }, 8000);
     return () => clearInterval(interval);
-  }, [projectTeasers.length]);
+  }, [sortedProjects.length]);
 
   const scrollToProjects = () => {
     const element = document.getElementById('projects');
@@ -113,6 +112,18 @@ export default function HeroSection() {
                   <p className="text-sm line-clamp-3 mt-1" style={{ color: 'var(--text-muted)' }}>
                     {currentProject.shortDescription}
                   </p>
+                  {currentProject.tags && currentProject.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 mt-2">
+                      {currentProject.tags.slice(0, 3).map((tag) => (
+                        <span
+                          key={tag}
+                          className="pill px-2 py-0.5 text-[0.65rem] font-medium rounded-full"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </motion.div>
             )}
