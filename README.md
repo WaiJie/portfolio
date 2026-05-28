@@ -1,8 +1,13 @@
 # Data Science Portfolio
 
-This site serves as a dynamic portfolio, showcasing various data science projects.
+A single-page portfolio showcasing data science and analytics projects. Features a light/dark theme with a beige "e-book" light mode and a cyan nebula dark mode, filterable project grid with search, animated hero section with a rotating featured project slideshow, and responsive design across all screen sizes.
 
-## 🧱 Tech Stack
+## Credits
+
+- Initially built with [bolt.diy](https://bolt.diy)
+- Modified and maintained with [Opencode](https://opencode.ai)
+
+## Tech Stack
 
 - React 18
 - TypeScript
@@ -12,7 +17,7 @@ This site serves as a dynamic portfolio, showcasing various data science project
 - React Router
 - Lucide React (icons)
 
-## 📂 Portfolio Content Structure
+## Portfolio Content Structure
 
 This site is organized to clearly present data science projects and related documentation.
 
