@@ -11,7 +11,7 @@ export const skills: Skill[] = [
   { name: 'Matplotlib', category: 'Visualisation' },
   { name: 'seaborn', category: 'Visualisation' },
   { name: 'SAS Visual Analytics', category: 'Visualisation' },
-  { name: 'ggplot2', category: 'Visualisation' },
+  { name: 'Streamlit', category: 'Visualisation' },
   { name: 'Scikit-learn', category: 'AI/ML' },
   { name: 'Regression', category: 'AI/ML' },
   { name: 'Classification', category: 'AI/ML' },
@@ -24,6 +24,7 @@ export const skills: Skill[] = [
   { name: 'Problem-Solving', category: 'Others' },
   { name: 'Data Storytelling', category: 'Others' },
   { name: 'Code Maintenance', category: 'Others' },
+  { name: 'Root Cause Analysis', category: 'Others' },
 
 ];
 
@@ -32,7 +33,7 @@ export const workExperience: WorkExperience[] = [
     id: "1",
     title: 'SAS Analyst ',
     company: 'ST Engineering Mission Software & Services Pte. Ltd.',
-    duration: 'April 2025 – Present',
+    duration: 'April 2025 – June 2026',
     description: "Resolved SQL and SAS Data Step issues in Enterprise Guide, maintaining and enhancing ETL pipelines for accurate reporting. Conducted UAT, wrote test cases, and validated SAS programs and Visual Investigator UI, reducing post-deployment defects and ensuring stable, maintainable code.",
   },
   {

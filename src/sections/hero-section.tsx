@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, MapPin, ChevronDown } from 'lucide-react';
 import { portfolioConfig } from '../content/home/portfolio';
@@ -8,16 +8,7 @@ const SCROLL_OFFSET = 90;
 
 export default function HeroSection() {
   const { name, jobTitle, location, shortDescription, socialLinks, fieldsOfInterest } = portfolioConfig.hero;
-  const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
-  const currentProject = sortedProjects[currentProjectIndex];
-
-  useEffect(() => {
-    if (!sortedProjects.length) return;
-    const interval = setInterval(() => {
-      setCurrentProjectIndex((prev) => (prev + 1) % sortedProjects.length);
-    }, 8000);
-    return () => clearInterval(interval);
-  }, [sortedProjects.length]);
+  const currentProject = sortedProjects[0];
 
   const scrollToProjects = () => {
     const element = document.getElementById('projects');
@@ -84,7 +75,7 @@ export default function HeroSection() {
           {/* Right Column – Featured Project */}
           <div className="flex flex-col items-center w-full">
             <h3 className="text-lg md:text-xl font-semibold mb-4 text-center text-[var(--text)]">
-              Featured Projects
+              Featured Project
             </h3>
 
             {currentProject && (
@@ -98,7 +89,7 @@ export default function HeroSection() {
                 onClick={scrollToProjects}
               >
                 {/* Project Image */}
-                <div className="relative h-48 w-full overflow-hidden">
+                <div className="relative h-64 w-full overflow-hidden">
                   <img
                     src={currentProject.image}
                     alt={currentProject.title}

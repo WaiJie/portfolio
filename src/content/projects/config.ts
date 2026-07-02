@@ -1196,8 +1196,108 @@ export const projects: ProjectType[] = [
         "content": "## Note\nThis project was created as part of the Municipal Services Office (MSO) Analytics Assignment assessment process."
       }
     ]
-  }
+  },
+  {
+    "id": "13",
+    "title": "1001 Occupations: An Interactive Career Exploration and Job Matching Platform",
+    "slug": "1001-occupations",
+    "shortDescription": "The 1001 Occupations website is an interactive career exploration and job matching platform built on Singapore's Standard Occupational Classification (SSOC) 2024 framework. It enables users to discover new career paths, evaluate job opportunities, and find matches based on their professional profile and resume.",
+    "image": "/portfolio/images/proj13_1001_Occupations/Landing_page_cover.png",
+    "tags": ["Python", "NLP", "Semantic Search","Embeddings", "Streamlit", "Plotly"],
+    "date": "2026-07-01",
+    "externalLinks": [
+      {
+        "label": "View on Streamlit",
+        "url": "https://1001occupations.streamlit.app/",
+        "description": "An interactive Streamlit application that semantically matches resumes to Singapore SSOC occupations and job postings using embedding-based similarity search."
+      }
+    ],
 
+    "blocks": [
+      {
+        "type": "text",
+        "content": "## Project Overview\nThis project came about during my job search, when I realised that as someone with a non-standard job title and niche software, it was not obvious which occupation I belong to. Although I always had a title with the word 'Analyst' or was even sometimes called a SAS Developer, I did not truly know if my profile was seen as a Data Engineer, Data Analyst, or perhaps a niche Developer. This likely also makes it ambiguous for recruiters reading the resume, as they are unsure if I am an Analyst or a developer."
+      },
+      {
+        "type": "text",
+        "content": "This website helps users determine their current career trajectory, further career direction, and understand the skills, tools, and responsibilities of each occupation. From there, users can browse some sample jobs and calculate their resume's match against their dream roles."
+      },
+      {
+        "type": "image",
+        "src": "/portfolio/images/proj13_1001_Occupations/Landing_page.png",
+        "caption": "Landing page for the website.",
+        "align": "center"
+      },
+      {
+        "type": "text",
+        "content": "## How it Works\nThe usage of this website is very simple. Upon arriving at the website, the user is guided to add a resume on the portfolio page. Here, users can paste their resume or resume section for the system to automatically determine their occupation based on semantic similarity to the description and tasks provided in the SSOC 2024 framework. This lets users know which occupations their profile is closest to. From here, users can choose to target one of the detected occupations, or click on Browse to see completely different roles in the occupation map."
+      },
+      {
+        "type": "image",
+        "src": "/portfolio/images/proj13_1001_Occupations/occupation_match_sample.png",
+        "caption": "Paste your resume to determine the closest occupations to your profile.",
+        "align": "center"
+      },
+	  {
+        "type": "text",
+        "content": "Once pasted, the resume is encoded by a transformer embeddings model (Jina embeddings v5 nano). The embeddings are then compared with pre-computed embeddings from the SSOC description and tasks using cosine similarity to determine the top 5 Occupation matches."
+      },
+      {
+        "type": "image",
+        "src": "/portfolio/images/proj13_1001_Occupations/occupation_browser.png",
+        "caption": "Use the Browse Occupations tab to check out other occupations. Clicking on the map opens up a detailed occupation profile.",
+        "align": "center"
+      },
+	  {
+        "type": "text",
+        "content": "Curious users can also visit the explore occupations page to look at detailed profiles of each occupation. The occupation map is an interactive plot of the Umap transformed embeddings, which maps the 768 dimensional vectors to 2D for visualisation."
+      },
+      {
+        "type": "image",
+        "src": "/portfolio/images/proj13_1001_Occupations/browse_occupation_profile.png",
+        "caption": "A detailed occupation profile showing the full breakdown of an occupation. Clicking on set as preferred occupation will change your target occupation to the currently open occupation profile. (Same as setting it in the profile tab)",
+        "align": "center"
+      },
+      {
+        "type": "image",
+        "src": "/portfolio/images/proj13_1001_Occupations/example_jobs_from_mcf.png",
+        "caption": "Each occupation profile contains data from SSOC definitions, as well as enriched data from a dataset of 50k jobs from the MyCareersFuture job portal.",
+        "align": "center"
+      },
+      {
+        "type": "image",
+        "src": "/portfolio/images/proj13_1001_Occupations/browse_occupation_profile_skills_tools.png",
+        "caption": "Additional details like skills and tools are also shown. The data source is shown in the tag beside each section of the profile (SSOC or Jobs).",
+        "align": "center"
+      },
+      {
+        "type": "image",
+        "src": "/portfolio/images/proj13_1001_Occupations/related_occupations.png",
+        "caption": "The closest occupations to the current occupation profile are also given at the bottom of the profile.",
+        "align": "center"
+      },
+      {
+        "type": "image",
+        "src": "/portfolio/images/proj13_1001_Occupations/job_recommendations.png",
+        "caption": "Under the Find Jobs tab, several jobs closest to the saved resume are recommended. Currently, data is static and not updated.",
+        "align": "center"
+      },
+      {
+        "type": "image",
+        "src": "/portfolio/images/proj13_1001_Occupations/evaluate_any_job_ads.png",
+        "caption": "One important feature is the ability to evaluate any job ad pasted into the UI. This can help users determine if the job fits their career direction and whether their profile is a strong match.",
+        "align": "center"
+      },
+	  {
+        "type": "text",
+        "content": "One possible use case of this bring your own job function could be to evaluate the effectiveness of a resume after tailoring it to a specific job by comparing the before and after semantic similarities."
+      },
+      {
+        "type": "text",
+        "content": "This project is a personal project born out of curiosity about current NLP models and techniques, as well as personal use. It may also be useful to career switchers or those with a mix of work experiences from different industries/roles."
+      }
+    ]
+  }
 ];
 
 // Sort projects by date (newest first)
