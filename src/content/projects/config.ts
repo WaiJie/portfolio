@@ -1197,7 +1197,7 @@ export const projects: ProjectType[] = [
       }
     ]
   },
-  {
+  /* {
     "id": "13",
     "title": "1001 Occupations: An Interactive Career Exploration and Job Matching Platform",
     "slug": "1001-occupations",
@@ -1295,6 +1295,74 @@ export const projects: ProjectType[] = [
       {
         "type": "text",
         "content": "This project is a personal project born out of curiosity about current NLP models and techniques, as well as personal use. It may also be useful to career switchers or those with a mix of work experiences from different industries/roles."
+      }
+    ]
+  } */,
+  {
+    "id": "14",
+    "title": "Job Market Pulse",
+    "slug": "job-market-pulse",
+    "shortDescription": "See where work is moving. An experimental analysis of the Singapore job market built from MyCareersFuture postings, grouping similar jobs by content to reveal roles, skills, and market signals.",
+    "image": "/portfolio/images/proj14_Job_market_pulse/landing_page.png",
+    "tags": ["NLP", "LLM", "Clustering", "Embeddings", "Labour Market", "Data Analytics"],
+    "date": "2026-08-31",
+    "externalLinks": [
+      {
+        "label": "View Live Dashboard",
+        "url": "https://waijie.github.io/SG-Job-Posting-Analysis/",
+        "description": "Interactive Job Market Pulse dashboard with market overview, job-function analysis, and automated role groups."
+      }
+    ],
+    "technologies": ["Python", "LLM", "Semantic Embeddings", "Clustering"],
+    "blocks": [
+      {
+        "type": "text",
+        "content": "## Overview\n\nSee where work is moving.\n\nJob Market Pulse is an experimental analysis of the Singapore job market built from job postings on MyCareersFuture.\n\nThe project starts with a simple question: What types of job roles are employers actually posting for?\n\nAnswering that is harder than simply counting job titles. Job titles are often inconsistent, uncommon, or ambiguous. Employers may use titles such as Data Analytics Engineer, AI Native Engineer, or other specialised titles that do not map neatly to a standard occupation. The same title can also describe very different work across employers, while different titles can describe highly similar work.\n\nA job posting contains much more information than its title: responsibilities, requirements, qualifications, tools, technologies, and skills.\n\nJob Market Pulse therefore looks beyond job titles and groups similar jobs based on the content of their postings. This creates a structured layer for further analysis.\n\nJob postings → structured role groups → skills & tools → market insights."
+      },
+      {
+        "type": "text",
+        "content": "## Why group jobs?\n\nAnalysing jobs only by their titles can fragment the market or hide similarities. For example, an employer might advertise a Data Analytics Engineer, while another uses Analytics Engineer, Data Engineer, or AI Native Engineer. These titles may describe overlapping types of work, but a title-based analysis would treat them as separate categories.\n\nThe opposite can also happen: two jobs with the same title may involve substantially different responsibilities.\n\nThe goal of Job Market Pulse is therefore to create a consistent analytical grouping of jobs based on what the jobs actually contain.\n\nOnce jobs are grouped consistently, it becomes possible to ask what types of work employers are hiring for, which roles are growing or declining, what responsibilities are common within each role, what tools and technologies employers are asking for, which skills are associated with different types of work, and how these patterns differ across industries and job functions.\n\nThe role grouping is therefore not the end goal. It provides the foundation for deeper analysis."
+      },
+      {
+        "type": "text",
+        "content": "## Automated role taxonomy\n\nThe role taxonomy is built through an automated NLP pipeline rather than relying on job titles alone. Large language models are used to extract and normalise information from each job posting. The job title, responsibilities, and requirements are then combined into a representation of the job and converted into semantic embeddings.\n\nThese embeddings are used for clustering and grouping similar jobs. Large language models are then used to label and describe the resulting clusters, producing human-readable role categories.\n\nThis approach is intended to identify the underlying types of work being advertised while reducing reliance on inconsistent, uncommon, or ambiguous job titles.\n\nThe resulting taxonomy is an analytical grouping, not an official occupational classification. It is still experimental, and some roles may overlap or be grouped incorrectly. The clustering and labelling methodology will be refined as the project develops."
+      },
+      {
+        "type": "code",
+        "language": "text",
+        "content": "Job posting\n    ↓\nLLM extraction & normalisation\n    ↓\nTitle + responsibilities + requirements\n    ↓\nSemantic embeddings\n    ↓\nClustering\n    ↓\nLLM labelling\n    ↓\nStructured role groups"
+      },
+      {
+        "type": "text",
+        "content": "## Job functions\n\nThe dashboard uses 43 job-function categories provided by MyCareersFuture. These provide a broad, platform-defined view of the market, while the automated role taxonomy provides a more detailed grouping of the jobs within those functions.\n\nThe two layers serve different purposes: MyCareersFuture job functions → automated role groups → skills & tools.\n\nThe job-function categories therefore reflect how postings are classified on MyCareersFuture and are not intended to represent a universal occupational classification."
+      },
+      {
+        "type": "text",
+        "content": "## What the dashboard shows\n\nThe current preview covers June–August 2026.\n\nThe market overview explores monthly posting activity across the 43 MyCareersFuture job functions, including total job posts, new jobs, recruiter postings, recruiter share, monthly changes, and job-function trends. Recruiter and new-job activity can be viewed separately because raw posting volume does not necessarily correspond directly to underlying hiring demand.\n\nThe job-function analysis compares the volume and movement of different job functions across the observation period. Examples include Engineering, Building and Construction, Customer Service, Information Technology, Accounting / Auditing / Taxation, Healthcare / Pharmaceutical, Banking and Finance, Logistics / Supply Chain, Marketing / Public Relations, and other MyCareersFuture classifications.\n\nThe role analysis looks within the broader job functions at the automated role groups identified from job descriptions. You can view the most frequently posted roles, compare role shares, examine month-over-month changes, focus on a particular job function, and inspect examples of postings assigned to a role. This layer provides a more detailed view of what kinds of work are actually being advertised."
+      },
+      {
+        "type": "text",
+        "content": "## From roles to skills and tools\n\nThe role taxonomy is the first layer of analysis, not the final output. Once similar jobs can be grouped consistently, each role can be examined in greater detail: Role → responsibilities → tools → technologies → skills → qualifications → industries → trends.\n\nThis allows the project to move beyond asking how many jobs use a particular title, towards asking what types of work employers are actually hiring for, and what they are asking those workers to do."
+      },
+      {
+        "type": "text",
+        "content": "## Market signals\n\nJob Market Pulse distinguishes between several types of posting activity. Job posts represent observed postings during a period. New jobs represent postings identified as new job activity after accounting for repeated or previously observed listings where possible. Recruiter posts identify postings associated with recruitment agencies, allowing users to see how much of the observed market signal comes through recruiters.\n\nThese distinctions help separate overall posting activity from signals that may better reflect new hiring activity."
+      },
+      {
+        "type": "text",
+        "content": "## Current dataset\n\nThe dataset comes from MyCareersFuture and covers Singapore from June to August 2026 across 43 job functions.\n\nFrom June to August 2026, 301,156 total posts were observed, corresponding to 274,083 unique jobs. Of these, 102,022 were recruiter posts, which is a recruiter share of 33.9 percent.\n\nThese figures represent observable job-posting activity, rather than an estimate of the entire Singapore labour market."
+      },
+      {
+        "type": "text",
+        "content": "## Current release\n\nThis is an early preview of the project. The current release focuses on market-level posting activity, job-function analysis, recruiter activity, new-job activity, automated role grouping, and role-level market analysis.\n\nThe role taxonomy is currently the main area for improvement. Future iterations will test alternative clustering and grouping approaches to improve how well the resulting role groups represent the underlying types of work. The analysis can then be expanded further into skills, tools, technologies, and other attributes of each role."
+      },
+      {
+        "type": "text",
+        "content": "## Limitations\n\nOn early release, this preview focuses on job-posting activity and role analysis, and additional dimensions may be added in future releases.\n\nOn observed postings rather than hires, posting counts measure observable job-posting activity and do not directly measure hires, vacancies filled, or employment outcomes.\n\nOn postings not always being unique jobs, jobs may be reposted, duplicated, or listed in multiple places, so observed posting volume may therefore differ from the number of unique hiring needs.\n\nOn provisional role classification, roles are extracted and grouped using local large language models and an experimental taxonomy. Some postings may be assigned to neighbouring or incorrect roles, particularly where occupations share similar skills and responsibilities, and role-level results may change in future releases.\n\nOn recruiter postings affecting the signal, recruitment agencies may post on behalf of other employers and can contribute substantially to observed volume, and the recruiter filter is provided to make this effect visible.\n\nOn the limited observation window, this release covers June–August 2026 and reflects only observable postings during this period, so it should not be interpreted as a complete picture of the Singapore labour market."
+      },
+      {
+        "type": "text",
+        "content": "## Project direction\n\nThe long-term goal of Job Market Pulse is to understand the labour market from the content of jobs, rather than relying primarily on job titles. The project starts with a large collection of unstructured job postings and progressively turns them into a structured view of jobs, roles, skills and tools, and market insights.\n\nThe central challenge is creating a consistent and useful grouping of jobs. Once that foundation is reliable, the same dataset can be used to investigate what different types of work actually involve, which skills and tools employers are asking for, how roles differ across industries, and how demand changes over time.\n\nUltimately, Job Market Pulse is an attempt to make a large, messy collection of job postings more legible by using the information contained within the postings themselves."
       }
     ]
   }

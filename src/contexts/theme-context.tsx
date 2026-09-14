@@ -13,9 +13,9 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window !== 'undefined') {
-      return (localStorage.getItem('theme') as Theme) || 'system'; // Default to 'system'
+      return (localStorage.getItem('theme') as Theme) || 'dark'; // Default to 'dark'
     }
-    return 'system'; // Default for server-side rendering or initial load
+    return 'dark'; // Default for server-side rendering or initial load
   });
 
   const [actualTheme, setActualTheme] = useState<'light' | 'dark'>('dark'); // Will be updated in useEffect
